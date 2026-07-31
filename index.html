@@ -5,20 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>홈페이지 제작 설정 안내서 · 개원비밀공간</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --plum: #6d1f3f;
-    --raspberry: #b0325b;
-    --paper: #faf5f2;
+    --plum: #0b3417;
+    --raspberry: #146c34;
+    --paper: #f5f4ee;
     --card: #ffffff;
-    --rose-tint: #f6e9ec;
-    --ink: #26201f;
-    --ink-soft: #6b5f5c;
+    --rose-tint: #e6f0e8;
+    --ink: #1b241d;
+    --ink-soft: #5c665e;
     --gold: #b8873f;
     --blue: #2e5e8f;
     --blue-tint: #e8f0f7;
-    --line: #e8dcd8;
+    --line: #dee3da;
     --done: #2f8f5b;
   }
   *{box-sizing:border-box;}
@@ -37,9 +37,9 @@
 
   .topbar{
     position:sticky; top:0; z-index:30;
-    background:rgba(250,245,242,0.96);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
+    background:var(--plum);
+    background-image: linear-gradient(115deg, transparent 0%, transparent 55%, rgba(255,255,255,0.035) 55%, rgba(255,255,255,0.035) 58%, transparent 58%);
+    box-shadow:0 2px 14px rgba(0,0,0,0.18);
     padding:14px 20px;
   }
   .topbar-inner{
@@ -52,17 +52,25 @@
     flex-wrap:wrap;
   }
   .brand{
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:2px;
-    color:var(--plum);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:1px;
+    color:#ffffff;
+  }
+  .brand-mark{
+    width:12px; height:24px; flex-shrink:0;
+    background:#ffffff;
+    clip-path:polygon(0 0, 100% 0, 100% 55%, 50% 100%, 0 55%);
   }
   .tabs{ display:flex; gap:8px; flex-wrap:wrap; }
   .tab-btn{
     display:flex; align-items:center; gap:8px;
-    border:1.5px solid var(--line);
-    background:var(--card);
-    color:var(--ink-soft);
+    border:1.5px solid rgba(255,255,255,0.28);
+    background:rgba(255,255,255,0.06);
+    color:rgba(255,255,255,0.8);
     font-family:inherit;
     font-size:13px; font-weight:700;
     padding:9px 16px; border-radius:22px;
@@ -70,18 +78,18 @@
   }
   .tab-btn .num{
     width:18px;height:18px; border-radius:50%;
-    background:var(--line); color:#fff; font-size:10.5px;
+    background:rgba(255,255,255,0.22); color:#fff; font-size:10.5px;
     display:flex;align-items:center;justify-content:center; flex-shrink:0;
   }
-  .tab-btn:hover{border-color:var(--raspberry); color:var(--plum);}
-  .tab-btn.active{ background:var(--plum); border-color:var(--plum); color:#fff; }
-  .tab-btn.active .num{background:rgba(255,255,255,0.25); color:#fff;}
+  .tab-btn:hover{border-color:#fff; color:#fff;}
+  .tab-btn.active{ background:#ffffff; border-color:#ffffff; color:var(--plum); }
+  .tab-btn.active .num{background:var(--plum); color:#fff;}
 
   .hero{ padding:52px 24px 36px; max-width:900px; margin:0 auto; text-align:center; }
   .kicker{ font-size:12px; letter-spacing:4px; font-weight:700; color:var(--raspberry); margin-bottom:16px; }
   .hero h1{
-    font-family:'Gowun Batang', serif; font-weight:700;
-    font-size:clamp(24px,4.6vw,38px); line-height:1.45; color:var(--plum); margin:0 0 16px;
+    font-family:'Noto Sans KR', sans-serif; font-weight:900;
+    font-size:clamp(24px,4.6vw,38px); line-height:1.4; letter-spacing:-0.5px; color:var(--plum); margin:0 0 16px;
   }
   .hero p{ font-size:15px; color:var(--ink-soft); max-width:540px; margin:0 auto 22px; line-height:1.7; }
   .meta-row{ display:flex; justify-content:center; gap:26px; flex-wrap:wrap; font-size:13px; color:var(--ink-soft); }
@@ -115,7 +123,7 @@
   .rail-seg{ width:2px; flex:1; min-height:52px; background:var(--line); position:relative; overflow:hidden; }
   .rail-seg::after{ content:''; position:absolute; top:0;left:0;width:100%;height:0%; background:var(--raspberry); transition:height .5s ease; }
   .rail-seg.filled::after{height:100%;}
-  .rail-dot.active{ background:var(--raspberry); border-color:var(--raspberry); color:#fff; box-shadow:0 0 0 5px rgba(176,50,91,0.15); }
+  .rail-dot.active{ background:var(--gold); border-color:var(--gold); color:#2a1f08; box-shadow:0 0 0 5px rgba(184,135,63,0.18); }
   .rail-dot.done{ background:var(--done); border-color:var(--done); color:#fff; }
 
   .steps{min-width:0;}
@@ -127,7 +135,7 @@
     display:inline-block; font-size:11px; font-weight:800; letter-spacing:2px;
     color:var(--raspberry); background:var(--rose-tint); padding:4px 10px; border-radius:20px; margin-bottom:14px;
   }
-  .step h2{ font-family:'Gowun Batang', serif; font-size:21px; color:var(--plum); margin:0 0 6px; }
+  .step h2{ font-family:'Noto Sans KR', sans-serif; font-weight:800; font-size:21px; color:var(--plum); margin:0 0 6px; }
   .step-sub{ color:var(--ink-soft); font-size:13.5px; margin-bottom:24px; }
 
   .sub{ display:flex; gap:14px; margin-bottom:19px; }
@@ -138,7 +146,7 @@
   }
   .sub .t{ font-weight:700; font-size:14.5px; margin-bottom:5px; color:var(--ink); }
   .sub .b{ font-size:13.8px; line-height:1.75; color:#413836; }
-  code{ background:#f1e6e2; color:var(--raspberry); padding:2px 7px; border-radius:4px; font-size:13px; font-family:'SF Mono', Consolas, monospace; }
+  code{ background:#e3f0e6; color:var(--raspberry); padding:2px 7px; border-radius:4px; font-size:13px; font-family:'SF Mono', Consolas, monospace; }
   .callout{ margin-top:10px; padding:10px 14px; border-radius:6px; font-size:13px; line-height:1.65; }
   .callout.tip{background:#fbf3e2; color:#6b4f16; border-left:3px solid var(--gold);}
   .callout.warn{background:#fdecec; color:#7a1f1f; border-left:3px solid #d64545;}
@@ -146,7 +154,7 @@
 
   .checklist{ max-width:980px; margin:0 auto; padding:6px 24px 20px; }
   .checklist-card{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:30px; }
-  .checklist-card h2{ font-family:'Gowun Batang', serif; color:var(--plum); margin:0 0 4px; font-size:21px; }
+  .checklist-card h2{ font-family:'Noto Sans KR', sans-serif; font-weight:800; color:var(--plum); margin:0 0 4px; font-size:21px; }
   .checklist-card > p{color:var(--ink-soft); font-size:13.5px; margin-top:0; margin-bottom:20px;}
   .citem{ display:flex; align-items:center; gap:14px; padding:12px 4px; border-bottom:1px solid var(--line); cursor:pointer; user-select:none; }
   .citem:last-of-type{border-bottom:none;}
@@ -169,8 +177,9 @@
     background:var(--plum); border-radius:10px; padding:26px 30px; color:#fff;
     display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
   }
-  .contact-card .name{font-size:16px; font-weight:700; margin-bottom:4px;}
-  .contact-card .role{font-size:12.5px; color:#e7c9d3;}
+  .contact-card .name{font-size:16px; font-weight:800; margin-bottom:4px; display:flex; align-items:center; gap:9px;}
+  .contact-card .name .brand-mark{width:9px; height:18px;}
+  .contact-card .role{font-size:12.5px; color:#bfe0c9;}
   .contact-card a{ color:#fff; background:var(--raspberry); padding:10px 20px; border-radius:24px; text-decoration:none; font-size:13px; font-weight:700; }
 
   .tab-panel{display:none;}
@@ -192,7 +201,7 @@
 
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="brand">개원비밀공간 · 홈페이지 설정 안내서</div>
+    <div class="brand"><span class="brand-mark"></span>개원비밀공간 · 홈페이지 설정 안내서</div>
     <div class="tabs" id="tabs">
       <button class="tab-btn active" data-tab="firebase"><span class="num">1</span>Firebase 설정</button>
       <button class="tab-btn" data-tab="domain"><span class="num">2</span>도메인 연결</button>
@@ -557,7 +566,7 @@
 <div class="contact">
   <div class="contact-card">
     <div>
-      <div class="name">개원비밀공간 · 전희석</div>
+      <div class="name"><span class="brand-mark"></span>개원비밀공간 · 전희석</div>
       <div class="role">병원 홈페이지 제작 · 관리</div>
     </div>
     <a href="mailto:jhsok92120@gmail.com">jhsok92120@gmail.com</a>
