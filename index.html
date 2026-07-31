@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Firebase 프로젝트 설정 안내서 · 개원비밀공간</title>
+<title>홈페이지 제작 설정 안내서 · 개원비밀공간</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --plum: #6d1f3f;
     --raspberry: #b0325b;
-    --raspberry-light: #d9577f;
     --paper: #faf5f2;
     --card: #ffffff;
     --rose-tint: #f6e9ec;
     --ink: #26201f;
     --ink-soft: #6b5f5c;
     --gold: #b8873f;
+    --blue: #2e5e8f;
+    --blue-tint: #e8f0f7;
     --line: #e8dcd8;
     --done: #2f8f5b;
   }
@@ -34,561 +35,524 @@
     *{animation:none !important; transition:none !important;}
   }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    padding:72px 24px 56px;
-    max-width:900px;
-    margin:0 auto;
-    text-align:center;
+  .topbar{
+    position:sticky; top:0; z-index:30;
+    background:rgba(250,245,242,0.96);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:14px 20px;
   }
-  .kicker{
-    font-size:12px;
-    letter-spacing:4px;
-    font-weight:700;
-    color:var(--raspberry);
-    margin-bottom:18px;
-  }
-  .hero h1{
-    font-family:'Gowun Batang', serif;
-    font-weight:700;
-    font-size:clamp(28px,5vw,44px);
-    line-height:1.45;
-    color:var(--plum);
-    margin:0 0 18px;
-  }
-  .hero p{
-    font-size:15.5px;
-    color:var(--ink-soft);
-    max-width:520px;
-    margin:0 auto 28px;
-    line-height:1.7;
-  }
-  .meta-row{
-    display:flex;
-    justify-content:center;
-    gap:28px;
-    flex-wrap:wrap;
-    font-size:13px;
-    color:var(--ink-soft);
-  }
-  .meta-row b{color:var(--plum); font-weight:700;}
-  .hero-divider{
-    width:64px; height:3px; background:var(--gold); margin:36px auto 0; border-radius:2px;
-  }
-
-  .intro-box{
-    max-width:640px;
-    margin:36px auto 0;
-    background:var(--rose-tint);
-    border-left:4px solid var(--raspberry);
-    border-radius:4px;
-    padding:18px 22px;
-    font-size:14px;
-    line-height:1.75;
-    color:#4a2432;
-    text-align:left;
-  }
-  .intro-box b{color:var(--plum);}
-
-  /* ---------- LAYOUT ---------- */
-  .layout{
+  .topbar-inner{
     max-width:980px;
     margin:0 auto;
-    display:grid;
-    grid-template-columns:88px 1fr;
-    gap:0;
-    padding:40px 24px 20px;
-  }
-  .rail{
-    position:sticky;
-    top:24px;
-    height:fit-content;
     display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding-top:8px;
-  }
-  .rail-dot{
-    width:34px;height:34px;border-radius:50%;
-    background:var(--card);
-    border:2px solid var(--line);
-    color:var(--ink-soft);
-    display:flex;align-items:center;justify-content:center;
-    font-weight:700;font-size:13px;
-    transition:all .35s ease;
-    flex-shrink:0;
-    z-index:2;
-  }
-  .rail-seg{
-    width:2px;
-    flex:1;
-    min-height:52px;
-    background:var(--line);
-    position:relative;
-    overflow:hidden;
-  }
-  .rail-seg::after{
-    content:'';
-    position:absolute;
-    top:0;left:0;width:100%;height:0%;
-    background:var(--raspberry);
-    transition:height .5s ease;
-  }
-  .rail-seg.filled::after{height:100%;}
-  .rail-dot.active{
-    background:var(--raspberry);
-    border-color:var(--raspberry);
-    color:#fff;
-    box-shadow:0 0 0 5px rgba(176,50,91,0.15);
-  }
-  .rail-dot.done{
-    background:var(--done);
-    border-color:var(--done);
-    color:#fff;
-  }
-
-  /* mobile progress bar */
-  .mobile-progress{
-    display:none;
-    position:sticky;
-    top:0;
-    z-index:20;
-    background:rgba(250,245,242,0.95);
-    backdrop-filter:blur(6px);
-    padding:10px 20px;
-    border-bottom:1px solid var(--line);
-    font-size:12.5px;
-    font-weight:700;
-    color:var(--plum);
     align-items:center;
     justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
   }
-  .mobile-progress .track{
-    flex:1;
-    height:4px;
-    background:var(--line);
-    margin-left:14px;
-    border-radius:3px;
-    overflow:hidden;
+  .brand{
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:2px;
+    color:var(--plum);
   }
-  .mobile-progress .fill{
-    height:100%;
-    width:0%;
-    background:var(--raspberry);
-    transition:width .4s ease;
+  .tabs{ display:flex; gap:8px; flex-wrap:wrap; }
+  .tab-btn{
+    display:flex; align-items:center; gap:8px;
+    border:1.5px solid var(--line);
+    background:var(--card);
+    color:var(--ink-soft);
+    font-family:inherit;
+    font-size:13px; font-weight:700;
+    padding:9px 16px; border-radius:22px;
+    cursor:pointer; transition:all .2s ease;
   }
+  .tab-btn .num{
+    width:18px;height:18px; border-radius:50%;
+    background:var(--line); color:#fff; font-size:10.5px;
+    display:flex;align-items:center;justify-content:center; flex-shrink:0;
+  }
+  .tab-btn:hover{border-color:var(--raspberry); color:var(--plum);}
+  .tab-btn.active{ background:var(--plum); border-color:var(--plum); color:#fff; }
+  .tab-btn.active .num{background:rgba(255,255,255,0.25); color:#fff;}
+
+  .hero{ padding:52px 24px 36px; max-width:900px; margin:0 auto; text-align:center; }
+  .kicker{ font-size:12px; letter-spacing:4px; font-weight:700; color:var(--raspberry); margin-bottom:16px; }
+  .hero h1{
+    font-family:'Gowun Batang', serif; font-weight:700;
+    font-size:clamp(24px,4.6vw,38px); line-height:1.45; color:var(--plum); margin:0 0 16px;
+  }
+  .hero p{ font-size:15px; color:var(--ink-soft); max-width:540px; margin:0 auto 22px; line-height:1.7; }
+  .meta-row{ display:flex; justify-content:center; gap:26px; flex-wrap:wrap; font-size:13px; color:var(--ink-soft); }
+  .meta-row b{color:var(--plum); font-weight:700;}
+  .hero-divider{ width:56px; height:3px; background:var(--gold); margin:28px auto 0; border-radius:2px; }
+  .intro-box{
+    max-width:640px; margin:28px auto 0; background:var(--rose-tint);
+    border-left:4px solid var(--raspberry); border-radius:4px; padding:16px 20px;
+    font-size:13.5px; line-height:1.75; color:#4a2432; text-align:left;
+  }
+  .intro-box.blue{background:var(--blue-tint); border-left-color:var(--blue); color:#1c3550;}
+  .intro-box b{color:inherit; font-weight:800;}
+
+  .mobile-progress{
+    display:none; position:sticky; top:57px; z-index:20;
+    background:rgba(250,245,242,0.95); backdrop-filter:blur(6px);
+    padding:9px 20px; border-bottom:1px solid var(--line);
+    font-size:12px; font-weight:700; color:var(--plum);
+    align-items:center; justify-content:space-between;
+  }
+  .mobile-progress .track{ flex:1; height:4px; background:var(--line); margin-left:14px; border-radius:3px; overflow:hidden; }
+  .mobile-progress .fill{ height:100%; width:0%; background:var(--raspberry); transition:width .4s ease; }
+
+  .layout{ max-width:980px; margin:0 auto; display:grid; grid-template-columns:88px 1fr; gap:0; padding:8px 24px 20px; }
+  .rail{ position:sticky; top:78px; height:fit-content; display:flex; flex-direction:column; align-items:center; padding-top:8px; }
+  .rail-dot{
+    width:34px;height:34px;border-radius:50%; background:var(--card); border:2px solid var(--line);
+    color:var(--ink-soft); display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:13px; transition:all .35s ease; flex-shrink:0; z-index:2;
+  }
+  .rail-seg{ width:2px; flex:1; min-height:52px; background:var(--line); position:relative; overflow:hidden; }
+  .rail-seg::after{ content:''; position:absolute; top:0;left:0;width:100%;height:0%; background:var(--raspberry); transition:height .5s ease; }
+  .rail-seg.filled::after{height:100%;}
+  .rail-dot.active{ background:var(--raspberry); border-color:var(--raspberry); color:#fff; box-shadow:0 0 0 5px rgba(176,50,91,0.15); }
+  .rail-dot.done{ background:var(--done); border-color:var(--done); color:#fff; }
 
   .steps{min-width:0;}
   .step{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:32px 32px 30px;
-    margin-bottom:28px;
-    scroll-margin-top:24px;
+    background:var(--card); border:1px solid var(--line); border-radius:10px;
+    padding:30px 30px 28px; margin-bottom:26px; scroll-margin-top:130px;
   }
   .step-eyebrow{
-    display:inline-block;
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:2px;
-    color:var(--raspberry);
-    background:var(--rose-tint);
-    padding:4px 10px;
-    border-radius:20px;
-    margin-bottom:14px;
+    display:inline-block; font-size:11px; font-weight:800; letter-spacing:2px;
+    color:var(--raspberry); background:var(--rose-tint); padding:4px 10px; border-radius:20px; margin-bottom:14px;
   }
-  .step h2{
-    font-family:'Gowun Batang', serif;
-    font-size:22px;
-    color:var(--plum);
-    margin:0 0 6px;
-  }
-  .step-sub{
-    color:var(--ink-soft);
-    font-size:13.5px;
-    margin-bottom:26px;
-  }
+  .step h2{ font-family:'Gowun Batang', serif; font-size:21px; color:var(--plum); margin:0 0 6px; }
+  .step-sub{ color:var(--ink-soft); font-size:13.5px; margin-bottom:24px; }
 
-  .sub{
-    display:flex;
-    gap:14px;
-    margin-bottom:20px;
-  }
+  .sub{ display:flex; gap:14px; margin-bottom:19px; }
   .sub:last-child{margin-bottom:0;}
   .sub .n{
-    flex-shrink:0;
-    width:24px;height:24px;
-    border-radius:50%;
-    background:var(--plum);
-    color:#fff;
-    font-size:12px;
-    font-weight:700;
-    display:flex;align-items:center;justify-content:center;
-    margin-top:2px;
+    flex-shrink:0; width:24px;height:24px; border-radius:50%; background:var(--plum); color:#fff;
+    font-size:12px; font-weight:700; display:flex;align-items:center;justify-content:center; margin-top:2px;
   }
-  .sub .t{
-    font-weight:700;
-    font-size:14.5px;
-    margin-bottom:5px;
-    color:var(--ink);
-  }
-  .sub .b{
-    font-size:13.8px;
-    line-height:1.75;
-    color:#413836;
-  }
-  code{
-    background:#f1e6e2;
-    color:var(--raspberry);
-    padding:2px 7px;
-    border-radius:4px;
-    font-size:13px;
-    font-family:'SF Mono', Consolas, monospace;
-  }
-  .callout{
-    margin-top:10px;
-    padding:10px 14px;
-    border-radius:6px;
-    font-size:13px;
-    line-height:1.65;
-  }
+  .sub .t{ font-weight:700; font-size:14.5px; margin-bottom:5px; color:var(--ink); }
+  .sub .b{ font-size:13.8px; line-height:1.75; color:#413836; }
+  code{ background:#f1e6e2; color:var(--raspberry); padding:2px 7px; border-radius:4px; font-size:13px; font-family:'SF Mono', Consolas, monospace; }
+  .callout{ margin-top:10px; padding:10px 14px; border-radius:6px; font-size:13px; line-height:1.65; }
   .callout.tip{background:#fbf3e2; color:#6b4f16; border-left:3px solid var(--gold);}
   .callout.warn{background:#fdecec; color:#7a1f1f; border-left:3px solid #d64545;}
-  .field{
-    margin-top:10px;
-    background:#f7f2f0;
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:10px 14px;
-    font-size:13px;
-  }
+  .field{ margin-top:10px; background:#f7f2f0; border:1px solid var(--line); border-radius:6px; padding:10px 14px; font-size:13px; }
 
-  /* ---------- CHECKLIST ---------- */
-  .checklist{
-    max-width:980px;
-    margin:0 auto;
-    padding:10px 24px 20px;
-  }
-  .checklist-card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:32px;
-  }
-  .checklist-card h2{
-    font-family:'Gowun Batang', serif;
-    color:var(--plum);
-    margin:0 0 4px;
-    font-size:22px;
-  }
-  .checklist-card > p{color:var(--ink-soft); font-size:13.5px; margin-top:0; margin-bottom:22px;}
-  .citem{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:13px 4px;
-    border-bottom:1px solid var(--line);
-    cursor:pointer;
-    user-select:none;
-  }
+  .checklist{ max-width:980px; margin:0 auto; padding:6px 24px 20px; }
+  .checklist-card{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:30px; }
+  .checklist-card h2{ font-family:'Gowun Batang', serif; color:var(--plum); margin:0 0 4px; font-size:21px; }
+  .checklist-card > p{color:var(--ink-soft); font-size:13.5px; margin-top:0; margin-bottom:20px;}
+  .citem{ display:flex; align-items:center; gap:14px; padding:12px 4px; border-bottom:1px solid var(--line); cursor:pointer; user-select:none; }
   .citem:last-of-type{border-bottom:none;}
   .citem .cb{
-    width:22px;height:22px;
-    border-radius:5px;
-    border:2px solid var(--line);
-    flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;
-    transition:all .2s ease;
-    color:#fff;
-    font-size:13px;
+    width:22px;height:22px; border-radius:5px; border:2px solid var(--line); flex-shrink:0;
+    display:flex;align-items:center;justify-content:center; transition:all .2s ease; color:#fff; font-size:13px;
   }
   .citem.checked .cb{background:var(--done); border-color:var(--done);}
   .citem span.label{font-size:14px; transition:color .2s ease;}
   .citem.checked span.label{color:var(--ink-soft); text-decoration:line-through;}
-  .progress-note{
-    margin-top:20px;
-    font-size:13px;
-    color:var(--ink-soft);
-  }
+  .progress-note{ margin-top:18px; font-size:13px; color:var(--ink-soft); }
   .final-tip{
-    margin-top:18px;
-    background:var(--rose-tint);
-    border-left:4px solid var(--raspberry);
-    border-radius:4px;
-    padding:16px 20px;
-    font-size:13.8px;
-    line-height:1.75;
-    color:#4a2432;
+    margin-top:16px; background:var(--rose-tint); border-left:4px solid var(--raspberry);
+    border-radius:4px; padding:14px 18px; font-size:13.6px; line-height:1.75; color:#4a2432;
   }
+  .final-tip.blue{background:var(--blue-tint); border-left-color:var(--blue); color:#1c3550;}
 
-  /* ---------- CONTACT ---------- */
-  .contact{
-    max-width:980px;
-    margin:8px auto 80px;
-    padding:0 24px;
-  }
+  .contact{ max-width:980px; margin:8px auto 80px; padding:0 24px; }
   .contact-card{
-    background:var(--plum);
-    border-radius:10px;
-    padding:28px 32px;
-    color:#fff;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:16px;
+    background:var(--plum); border-radius:10px; padding:26px 30px; color:#fff;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
   }
-  .contact-card .name{font-size:17px; font-weight:700; margin-bottom:4px;}
-  .contact-card .role{font-size:13px; color:#e7c9d3;}
-  .contact-card a{
-    color:#fff;
-    background:var(--raspberry);
-    padding:10px 20px;
-    border-radius:24px;
-    text-decoration:none;
-    font-size:13.5px;
-    font-weight:700;
-  }
+  .contact-card .name{font-size:16px; font-weight:700; margin-bottom:4px;}
+  .contact-card .role{font-size:12.5px; color:#e7c9d3;}
+  .contact-card a{ color:#fff; background:var(--raspberry); padding:10px 20px; border-radius:24px; text-decoration:none; font-size:13px; font-weight:700; }
+
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block; animation:fadein .3s ease;}
+  @keyframes fadein{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
 
   @media (max-width:720px){
     .rail{display:none;}
     .mobile-progress{display:flex;}
-    .layout{grid-template-columns:1fr; padding-top:16px;}
-    .step{padding:24px 20px 22px;}
-    .hero{padding:48px 20px 40px;}
+    .layout{grid-template-columns:1fr; padding-top:10px;}
+    .step{padding:22px 18px 20px;}
+    .hero{padding:36px 20px 30px;}
+    .tabs{width:100%; justify-content:center;}
+    .tab-btn{flex:1; justify-content:center; padding:9px 8px; font-size:12px;}
   }
 </style>
 </head>
 <body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">개원비밀공간 · 홈페이지 설정 안내서</div>
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="firebase"><span class="num">1</span>Firebase 설정</button>
+      <button class="tab-btn" data-tab="domain"><span class="num">2</span>도메인 연결</button>
+      <button class="tab-btn" data-tab="kakao"><span class="num">3</span>카카오맵 API</button>
+    </div>
+  </div>
+</div>
 
 <div class="mobile-progress" id="mobileProgress">
   <span id="mobileLabel">STEP 1 / 5</span>
   <div class="track"><div class="fill" id="mobileFill"></div></div>
 </div>
 
-<section class="hero">
-  <div class="kicker">개원비밀공간 · GAEWON SECRET SPACE</div>
-  <h1>병원 홈페이지 제작을 위한<br>Firebase 프로젝트 설정 안내서</h1>
-  <p>원장님께서 직접 진행해 주셔야 하는 5가지 단계를 순서대로 정리했습니다. 화면을 따라 차근차근 진행해 주세요.</p>
-  <div class="meta-row">
-    <div>⏱ 예상 소요시간 <b>약 15분</b></div>
-    <div>📋 총 <b>5단계</b></div>
+<section class="tab-panel active" id="panel-firebase" data-steps="5">
+
+  <section class="hero">
+    <div class="kicker">STEP 1 · 프로젝트 준비</div>
+    <h1>Firebase 프로젝트 설정</h1>
+    <p>홈페이지가 올라갈 원장님 전용 프로젝트(계정 공간)를 만드는 5가지 단계입니다.</p>
+    <div class="meta-row">
+      <div>⏱ 예상 소요시간 <b>약 15분</b></div>
+      <div>📋 총 <b>5단계</b></div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="intro-box">
+      귀 병원 홈페이지는 <b>원장님 명의의 Firebase 프로젝트</b> 위에서 제작됩니다. 이렇게 하면 홈페이지 데이터와 계정 소유권이 온전히 원장님께 있으며, 저(개발자)는 편집 권한만 받아 제작·관리를 도와드리는 구조입니다.
+    </div>
+  </section>
+
+  <div class="layout">
+    <div class="rail" data-rail="firebase">
+      <div class="rail-dot" data-idx="0">1</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="1">2</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="2">3</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="3">4</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="4">5</div>
+    </div>
+
+    <div class="steps" data-steps-container="firebase">
+
+      <div class="step" id="fb-step-0">
+        <span class="step-eyebrow">STEP 1</span>
+        <h2>Firebase 프로젝트 생성</h2>
+        <div class="step-sub">홈페이지가 올라갈 원장님 전용 프로젝트를 만드는 단계입니다.</div>
+
+        <div class="sub">
+          <div class="n">1</div>
+          <div>
+            <div class="t">Firebase 콘솔 접속</div>
+            <div class="b">구글 계정(가급적 병원용으로 계속 사용하실 계정)으로 로그인한 상태에서 아래 주소에 접속합니다.</div>
+            <div class="field">https://console.firebase.google.com</div>
+          </div>
+        </div>
+        <div class="sub">
+          <div class="n">2</div>
+          <div><div class="t">새 프로젝트 만들기</div><div class="b">화면의 <b>"프로젝트 추가"(Add project)</b> 버튼을 클릭합니다.</div></div>
+        </div>
+        <div class="sub">
+          <div class="n">3</div>
+          <div>
+            <div class="t">프로젝트 이름 입력</div>
+            <div class="b">병원 이름이 들어가도록 입력합니다. (예: <code>myclinic-website</code>) 입력하면 아래에 <code>myclinic-a1b2c</code>와 같은 형태로 프로젝트 ID가 자동 생성됩니다.</div>
+            <div class="callout tip">💡 이 프로젝트 ID는 이후 웹사이트 주소의 일부가 될 수 있으니, 화면에 표시된 ID를 캡처해 두시거나 저에게 전달해 주시면 좋습니다.</div>
+          </div>
+        </div>
+        <div class="sub">
+          <div class="n">4</div>
+          <div><div class="t">Google 애널리틱스 설정</div><div class="b">"이 프로젝트에 Google 애널리틱스 사용 설정" 항목은 꺼주셔도 무방합니다 (선택 사항이며 나중에 추가 가능).</div></div>
+        </div>
+        <div class="sub">
+          <div class="n">5</div>
+          <div><div class="t">프로젝트 생성 완료</div><div class="b">"프로젝트 만들기" 버튼을 누르고 잠시 기다리면 완료됩니다. "계속" 버튼을 눌러 프로젝트 대시보드로 이동합니다.</div></div>
+        </div>
+      </div>
+
+      <div class="step" id="fb-step-1">
+        <span class="step-eyebrow">STEP 2</span>
+        <h2>요금제를 Blaze로 업그레이드</h2>
+        <div class="step-sub">이미지 저장, 실시간 데이터베이스 등 정상 작동을 위해 필요한 단계입니다.</div>
+
+        <div class="callout warn" style="margin-bottom:22px;">⚠️ "Blaze"는 사용량 기반 종량제 요금제입니다. 병원 홈페이지 수준의 트래픽에서는 대부분 월 0원 ~ 소액 수준이며, 무료 사용량 한도 내에서는 과금되지 않습니다.</div>
+
+        <div class="sub">
+          <div class="n">1</div>
+          <div><div class="t">요금제 변경 메뉴 이동</div><div class="b">프로젝트 대시보드 왼쪽 하단의 <b>"업그레이드"(Upgrade)</b> 버튼, 또는 ⚙️ 톱니바퀴 → <b>사용량 및 결제(Usage and billing)</b>로 이동합니다.</div></div>
+        </div>
+        <div class="sub">
+          <div class="n">2</div>
+          <div><div class="t">Blaze 요금제 선택</div><div class="b">"Blaze - 사용한 만큼만 지불" 옵션을 선택하고 "플랜 선택"을 클릭합니다.</div></div>
+        </div>
+        <div class="sub">
+          <div class="n">3</div>
+          <div><div class="t">결제 계정 연결</div><div class="b">기존 Google 결제 계정이 있다면 선택하고, 없다면 새로 만들어 카드 정보를 등록합니다.</div></div>
+        </div>
+        <div class="sub">
+          <div class="n">4</div>
+          <div><div class="t">예산 알림 설정 (선택, 권장)</div><div class="b">"예산 알림" 금액을 예를 들어 10,000원으로 설정해두면, 초과 시 이메일로 알려줍니다.</div></div>
+        </div>
+      </div>
+
+      <div class="step" id="fb-step-2">
+        <span class="step-eyebrow">STEP 3</span>
+        <h2>Firestore Database 설정</h2>
+        <div class="step-sub">예약 문의, 공지사항 등 데이터를 저장하는 공간을 만드는 단계입니다.</div>
+
+        <div class="sub"><div class="n">1</div><div><div class="t">Firestore 메뉴 이동</div><div class="b">왼쪽 메뉴에서 구축(Build) → <b>Firestore Database</b>를 클릭합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">데이터베이스 만들기</div><div class="b">"데이터베이스 만들기(Create database)" 버튼을 클릭합니다.</div></div></div>
+        <div class="sub">
+          <div class="n">3</div>
+          <div>
+            <div class="t">위치(리전) 선택</div>
+            <div class="b">반드시 아래 리전으로 선택해 주세요.</div>
+            <div class="field">위치: asia-northeast3 (Seoul)</div>
+            <div class="callout tip">💡 서울 리전을 선택해야 국내 접속 속도가 가장 빠릅니다. 한 번 선택하면 이후 변경이 불가능합니다.</div>
+          </div>
+        </div>
+        <div class="sub"><div class="n">4</div><div><div class="t">보안 규칙 모드 선택</div><div class="b">"테스트 모드에서 시작(Start in test mode)"을 선택하고 "만들기"를 클릭합니다. (보안 규칙은 이후 제가 안전하게 설정해 드립니다.)</div></div></div>
+      </div>
+
+      <div class="step" id="fb-step-3">
+        <span class="step-eyebrow">STEP 4</span>
+        <h2>Storage 설정</h2>
+        <div class="step-sub">홈페이지에 들어갈 사진, 이미지 파일을 저장하는 공간을 만드는 단계입니다.</div>
+
+        <div class="sub"><div class="n">1</div><div><div class="t">Storage 메뉴 이동</div><div class="b">왼쪽 메뉴에서 구축(Build) → <b>Storage</b>를 클릭합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">시작하기</div><div class="b">"시작하기(Get started)" 버튼을 클릭합니다.</div></div></div>
+        <div class="sub"><div class="n">3</div><div><div class="t">보안 규칙 확인</div><div class="b">기본값 그대로 두고 "다음(Next)"을 클릭합니다.</div></div></div>
+        <div class="sub">
+          <div class="n">4</div>
+          <div><div class="t">위치(리전) 선택</div><div class="b">Firestore와 동일하게 아래 리전으로 선택합니다.</div><div class="field">위치: asia-northeast3 (Seoul)</div></div>
+        </div>
+        <div class="sub"><div class="n">5</div><div><div class="t">완료</div><div class="b">"완료(Done)"를 클릭하면 Storage 설정이 끝납니다.</div></div></div>
+      </div>
+
+      <div class="step" id="fb-step-4">
+        <span class="step-eyebrow">STEP 5</span>
+        <h2>개발자를 편집자(Editor)로 추가</h2>
+        <div class="step-sub">제가 홈페이지 제작·관리 작업을 할 수 있도록 프로젝트에 초대해 주시는 마지막 단계입니다.</div>
+
+        <div class="sub"><div class="n">1</div><div><div class="t">프로젝트 설정 이동</div><div class="b">⚙️ 톱니바퀴 → <b>프로젝트 설정(Project settings)</b>을 클릭합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">사용자 및 권한 메뉴</div><div class="b">상단 탭에서 <b>사용자 및 권한(Users and permissions)</b>을 클릭합니다.</div></div></div>
+        <div class="sub">
+          <div class="n">3</div>
+          <div><div class="t">구성원 추가</div><div class="b">"구성원 추가(Add member)" 버튼을 클릭한 뒤, 아래 이메일을 입력합니다.</div><div class="field">jhsok92120@gmail.com</div></div>
+        </div>
+        <div class="sub">
+          <div class="n">4</div>
+          <div>
+            <div class="t">역할(권한) 지정</div>
+            <div class="b">역할 선택에서 <b>편집자(Editor)</b>를 선택한 뒤 "구성원 추가"를 클릭하여 완료합니다.</div>
+            <div class="callout tip">💡 소유자(Owner) 권한은 원장님만 유지하시고, 개발자에게는 편집자(Editor) 권한만 부여하시면 됩니다.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
-  <div class="hero-divider"></div>
-  <div class="intro-box">
-    귀 병원 홈페이지는 <b>원장님 명의의 Firebase 프로젝트</b> 위에서 제작됩니다. 이렇게 하면 홈페이지 데이터와 계정 소유권이 온전히 원장님께 있으며, 저(개발자)는 편집 권한만 받아 제작·관리를 도와드리는 구조입니다.
+
+  <div class="checklist">
+    <div class="checklist-card">
+      <h2>완료 체크리스트</h2>
+      <p>진행하신 항목을 눌러 표시해 보세요. (화면에서만 표시되며 저장되지는 않습니다)</p>
+      <div class="citem" data-key="fb0"><div class="cb"></div><span class="label">Firebase 프로젝트 생성 완료</span></div>
+      <div class="citem" data-key="fb1"><div class="cb"></div><span class="label">Blaze 요금제로 업그레이드 완료</span></div>
+      <div class="citem" data-key="fb2"><div class="cb"></div><span class="label">Firestore Database 생성 완료 (asia-northeast3)</span></div>
+      <div class="citem" data-key="fb3"><div class="cb"></div><span class="label">Storage 생성 완료 (asia-northeast3)</span></div>
+      <div class="citem" data-key="fb4"><div class="cb"></div><span class="label">jhsok92120@gmail.com 편집자(Editor) 권한 추가 완료</span></div>
+      <div class="progress-note" data-progress="firebase">0 / 5 완료</div>
+      <div class="final-tip">💡 모두 완료되셨다면, <b>프로젝트 이름 또는 프로젝트 ID</b>를 저에게 전달해 주세요. 이후 작업은 제가 모두 진행합니다.</div>
+    </div>
   </div>
 </section>
 
-<div class="layout">
-  <div class="rail" id="rail">
-    <div class="rail-dot" data-idx="0">1</div>
-    <div class="rail-seg"></div>
-    <div class="rail-dot" data-idx="1">2</div>
-    <div class="rail-seg"></div>
-    <div class="rail-dot" data-idx="2">3</div>
-    <div class="rail-seg"></div>
-    <div class="rail-dot" data-idx="3">4</div>
-    <div class="rail-seg"></div>
-    <div class="rail-dot" data-idx="4">5</div>
+<section class="tab-panel" id="panel-domain" data-steps="5">
+
+  <section class="hero">
+    <div class="kicker">STEP 2 · 주소 연결</div>
+    <h1>도메인 연결</h1>
+    <p>구매하신 도메인을 홈페이지 주소로 실제 연결하는 5가지 단계입니다.</p>
+    <div class="meta-row">
+      <div>⏱ 예상 소요시간 <b>10분 + 대기 최대 24시간</b></div>
+      <div>📋 총 <b>5단계</b></div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="intro-box">
+      도메인은 <b>원장님 명의로 직접 구매</b>하셔야 합니다 (결제가 걸린 부분이라 대신 진행이 어렵습니다). 구매 이후 Firebase와 연결하는 작업은 제가 안내해 드리며, 등록업체 로그인 정보를 공유해 주시면 이 단계도 제가 대신 처리해 드릴 수 있습니다.
+    </div>
+  </section>
+
+  <div class="layout">
+    <div class="rail" data-rail="domain">
+      <div class="rail-dot" data-idx="0">1</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="1">2</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="2">3</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="3">4</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="4">5</div>
+    </div>
+
+    <div class="steps" data-steps-container="domain">
+
+      <div class="step" id="dm-step-0">
+        <span class="step-eyebrow">STEP 1</span>
+        <h2>도메인 구매 확인</h2>
+        <div class="step-sub">가비아, 후이즈 등 국내 등록업체에서 원장님 명의로 도메인을 구매합니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">도메인 구매</div><div class="b">가비아(gabia.com) 등에서 원하는 도메인 주소를 검색하고 구매를 완료합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">로그인 정보 확보</div><div class="b">등록업체 아이디/비밀번호를 기억해 두세요. DNS 설정 작업 시 필요합니다.</div></div></div>
+      </div>
+
+      <div class="step" id="dm-step-1">
+        <span class="step-eyebrow">STEP 2</span>
+        <h2>Firebase Hosting에 도메인 추가</h2>
+        <div class="step-sub">Firebase 콘솔에서 연결할 도메인을 등록하는 단계입니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">Hosting 메뉴 이동</div><div class="b">Firebase 콘솔 → 왼쪽 메뉴 구축(Build) → <b>Hosting</b>을 클릭합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">커스텀 도메인 추가</div><div class="b">"커스텀 도메인 추가(Add custom domain)" 버튼을 클릭하고, 구매한 도메인 주소를 입력합니다.</div></div></div>
+      </div>
+
+      <div class="step" id="dm-step-2">
+        <span class="step-eyebrow">STEP 3</span>
+        <h2>소유권 확인 (TXT 레코드)</h2>
+        <div class="step-sub">이 도메인이 정말 원장님 소유인지 확인하는 절차입니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">TXT 레코드 값 복사</div><div class="b">Firebase가 화면에 보여주는 TXT 레코드 값을 복사합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">등록업체 DNS 설정 이동</div><div class="b">가비아 등 등록업체 사이트 로그인 → 도메인 관리 → <b>DNS 설정(네임서버 관리)</b>으로 이동합니다.</div></div></div>
+        <div class="sub"><div class="n">3</div><div><div class="t">TXT 레코드 추가</div><div class="b">복사한 값을 TXT 레코드로 추가하고 저장합니다.</div><div class="callout tip">💡 확인까지 몇 분에서 몇 시간이 걸릴 수 있습니다. Firebase 화면에서 "확인 중" 상태가 뜨면 정상입니다.</div></div></div>
+      </div>
+
+      <div class="step" id="dm-step-3">
+        <span class="step-eyebrow">STEP 4</span>
+        <h2>연결 레코드 등록 (A 레코드)</h2>
+        <div class="step-sub">실제로 도메인이 홈페이지로 연결되도록 만드는 핵심 단계입니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">A 레코드 값 복사</div><div class="b">Firebase가 알려주는 IP 주소(A 레코드)를 복사합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">등록업체 DNS에 A 레코드 추가</div><div class="b">같은 DNS 설정 화면에서 A 레코드로 등록합니다.</div></div></div>
+        <div class="sub">
+          <div class="n">3</div>
+          <div><div class="t">URL 자동연결(포워딩) 기능 끄기</div><div class="b">가비아 등에서 "URL 자동연결" 또는 "포워딩" 기능이 켜져 있으면 반드시 꺼주세요.</div>
+          <div class="callout warn">⚠️ 이 기능이 켜져 있으면 A 레코드와 충돌해서 사이트가 열리지 않을 수 있습니다.</div></div>
+        </div>
+      </div>
+
+      <div class="step" id="dm-step-4">
+        <span class="step-eyebrow">STEP 5</span>
+        <h2>SSL 인증서 발급 대기</h2>
+        <div class="step-sub">보안 연결(https)을 위한 인증서가 자동으로 발급되는 단계입니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">자동 발급 대기</div><div class="b">별도로 하실 작업은 없습니다. Firebase가 자동으로 SSL 인증서를 발급합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">발급 완료 확인</div><div class="b">보통 몇 시간에서 최대 24시간 정도 소요됩니다. 이 기간 동안 사이트가 일시적으로 안 열릴 수 있으나 정상적인 과정입니다.</div><div class="callout tip">💡 발급이 완료되면 Firebase Hosting 화면에 초록색 "연결됨" 표시가 뜹니다.</div></div></div>
+      </div>
+
+    </div>
   </div>
 
-  <div class="steps">
-
-    <div class="step" id="step-0">
-      <span class="step-eyebrow">STEP 1</span>
-      <h2>Firebase 프로젝트 생성</h2>
-      <div class="step-sub">홈페이지가 올라갈 원장님 전용 프로젝트(계정 공간)를 만드는 단계입니다.</div>
-
-      <div class="sub">
-        <div class="n">1</div>
-        <div>
-          <div class="t">Firebase 콘솔 접속</div>
-          <div class="b">구글 계정(가급적 병원용으로 계속 사용하실 계정)으로 로그인한 상태에서 아래 주소에 접속합니다.</div>
-          <div class="field">https://console.firebase.google.com</div>
-        </div>
-      </div>
-      <div class="sub">
-        <div class="n">2</div>
-        <div>
-          <div class="t">새 프로젝트 만들기</div>
-          <div class="b">화면의 <b>"프로젝트 추가"(Add project)</b> 버튼을 클릭합니다.</div>
-        </div>
-      </div>
-      <div class="sub">
-        <div class="n">3</div>
-        <div>
-          <div class="t">프로젝트 이름 입력</div>
-          <div class="b">병원 이름이 들어가도록 입력합니다. (예: <code>myclinic-website</code>) 입력하면 아래에 <code>myclinic-a1b2c</code>와 같은 형태로 프로젝트 ID가 자동 생성됩니다.</div>
-          <div class="callout tip">💡 이 프로젝트 ID는 이후 웹사이트 주소의 일부가 될 수 있으니, 화면에 표시된 ID를 캡처해 두시거나 저에게 전달해 주시면 좋습니다.</div>
-        </div>
-      </div>
-      <div class="sub">
-        <div class="n">4</div>
-        <div>
-          <div class="t">Google 애널리틱스 설정</div>
-          <div class="b">"이 프로젝트에 Google 애널리틱스 사용 설정" 항목은 꺼주셔도 무방합니다 (선택 사항이며 나중에 추가 가능).</div>
-        </div>
-      </div>
-      <div class="sub">
-        <div class="n">5</div>
-        <div>
-          <div class="t">프로젝트 생성 완료</div>
-          <div class="b">"프로젝트 만들기" 버튼을 누르고 잠시 기다리면 완료됩니다. "계속" 버튼을 눌러 프로젝트 대시보드로 이동합니다.</div>
-        </div>
-      </div>
+  <div class="checklist">
+    <div class="checklist-card">
+      <h2>완료 체크리스트</h2>
+      <p>진행하신 항목을 눌러 표시해 보세요.</p>
+      <div class="citem" data-key="dm0"><div class="cb"></div><span class="label">도메인 구매 완료</span></div>
+      <div class="citem" data-key="dm1"><div class="cb"></div><span class="label">Firebase Hosting에 커스텀 도메인 추가 완료</span></div>
+      <div class="citem" data-key="dm2"><div class="cb"></div><span class="label">TXT 레코드 등록 및 소유권 확인 완료</span></div>
+      <div class="citem" data-key="dm3"><div class="cb"></div><span class="label">A 레코드 등록 + URL 자동연결 끄기 완료</span></div>
+      <div class="citem" data-key="dm4"><div class="cb"></div><span class="label">SSL 인증서 발급 완료 (연결됨 표시 확인)</span></div>
+      <div class="progress-note" data-progress="domain">0 / 5 완료</div>
+      <div class="final-tip">💡 등록업체 로그인 정보를 공유해 주시면 3~4번 DNS 작업은 제가 대신 처리해 드릴 수 있습니다.</div>
     </div>
-
-    <div class="step" id="step-1">
-      <span class="step-eyebrow">STEP 2</span>
-      <h2>요금제를 Blaze로 업그레이드</h2>
-      <div class="step-sub">홈페이지의 이미지 저장, 실시간 데이터베이스 등 정상 작동을 위해 필요한 단계입니다.</div>
-
-      <div class="callout warn" style="margin-bottom:22px;">⚠️ "Blaze"는 사용량 기반 종량제 요금제입니다. 병원 홈페이지 수준의 트래픽에서는 대부분 월 0원 ~ 소액 수준이며, 무료 사용량 한도 내에서는 과금되지 않습니다. 결제 수단(카드) 등록이 필요하지만, 한도를 넘지 않는 한 청구되지 않습니다.</div>
-
-      <div class="sub">
-        <div class="n">1</div>
-        <div>
-          <div class="t">요금제 변경 메뉴 이동</div>
-          <div class="b">프로젝트 대시보드 왼쪽 하단의 <b>"업그레이드"(Upgrade)</b> 버튼, 또는 좌측 메뉴의 ⚙️ 톱니바퀴 → <b>사용량 및 결제(Usage and billing)</b>로 이동합니다.</div>
-        </div>
-      </div>
-      <div class="sub">
-        <div class="n">2</div>
-        <div>
-          <div class="t">Blaze 요금제 선택</div>
-          <div class="b">"Blaze - 사용한 만큼만 지불" 옵션을 선택하고 "플랜 선택"을 클릭합니다.</div>
-        </div>
-      </div>
-      <div class="sub">
-        <div class="n">3</div>
-        <div>
-          <div class="t">결제 계정 연결</div>
-          <div class="b">기존 Google 결제 계정이 있다면 선택하고, 없다면 새로 만들어 카드 정보를 등록합니다.</div>
-        </div>
-      </div>
-      <div class="sub">
-        <div class="n">4</div>
-        <div>
-          <div class="t">예산 알림 설정 (선택, 권장)</div>
-          <div class="b">"예산 알림" 금액을 예를 들어 10,000원으로 설정해두면, 해당 금액을 초과할 때 이메일로 알려줍니다. 안심하고 사용하실 수 있습니다.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="step" id="step-2">
-      <span class="step-eyebrow">STEP 3</span>
-      <h2>Firestore Database 설정</h2>
-      <div class="step-sub">홈페이지의 예약 문의, 공지사항 등 데이터를 저장하는 공간을 만드는 단계입니다.</div>
-
-      <div class="sub">
-        <div class="n">1</div>
-        <div><div class="t">Firestore 메뉴 이동</div><div class="b">왼쪽 메뉴에서 구축(Build) → <b>Firestore Database</b>를 클릭합니다.</div></div>
-      </div>
-      <div class="sub">
-        <div class="n">2</div>
-        <div><div class="t">데이터베이스 만들기</div><div class="b">"데이터베이스 만들기(Create database)" 버튼을 클릭합니다.</div></div>
-      </div>
-      <div class="sub">
-        <div class="n">3</div>
-        <div>
-          <div class="t">위치(리전) 선택</div>
-          <div class="b">반드시 아래 리전으로 선택해 주세요.</div>
-          <div class="field">위치: asia-northeast3 (Seoul)</div>
-          <div class="callout tip">💡 서울 리전을 선택해야 국내 접속 속도가 가장 빠릅니다. 한 번 선택하면 이후 변경이 불가능하니 꼭 확인해 주세요.</div>
-        </div>
-      </div>
-      <div class="sub">
-        <div class="n">4</div>
-        <div>
-          <div class="t">보안 규칙 모드 선택</div>
-          <div class="b">"테스트 모드에서 시작(Start in test mode)"을 선택하고 "만들기(Create)"를 클릭합니다. (보안 규칙은 이후 제가 홈페이지 제작 과정에서 직접 안전하게 설정해 드립니다.)</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="step" id="step-3">
-      <span class="step-eyebrow">STEP 4</span>
-      <h2>Storage 설정</h2>
-      <div class="step-sub">홈페이지에 들어갈 사진, 이미지 파일을 저장하는 공간을 만드는 단계입니다.</div>
-
-      <div class="sub">
-        <div class="n">1</div>
-        <div><div class="t">Storage 메뉴 이동</div><div class="b">왼쪽 메뉴에서 구축(Build) → <b>Storage</b>를 클릭합니다.</div></div>
-      </div>
-      <div class="sub">
-        <div class="n">2</div>
-        <div><div class="t">시작하기</div><div class="b">"시작하기(Get started)" 버튼을 클릭합니다.</div></div>
-      </div>
-      <div class="sub">
-        <div class="n">3</div>
-        <div><div class="t">보안 규칙 확인</div><div class="b">기본값(테스트 모드 관련 안내) 그대로 두고 "다음(Next)"을 클릭합니다.</div></div>
-      </div>
-      <div class="sub">
-        <div class="n">4</div>
-        <div>
-          <div class="t">위치(리전) 선택</div>
-          <div class="b">Firestore와 동일하게 아래 리전으로 선택합니다.</div>
-          <div class="field">위치: asia-northeast3 (Seoul)</div>
-        </div>
-      </div>
-      <div class="sub">
-        <div class="n">5</div>
-        <div><div class="t">완료</div><div class="b">"완료(Done)"를 클릭하면 Storage 설정이 끝납니다.</div></div>
-      </div>
-    </div>
-
-    <div class="step" id="step-4">
-      <span class="step-eyebrow">STEP 5</span>
-      <h2>개발자를 편집자(Editor)로 추가</h2>
-      <div class="step-sub">제가 홈페이지 제작·관리 작업을 할 수 있도록 프로젝트에 초대해 주시는 마지막 단계입니다.</div>
-
-      <div class="sub">
-        <div class="n">1</div>
-        <div><div class="t">프로젝트 설정 이동</div><div class="b">왼쪽 상단 ⚙️ 톱니바퀴 → <b>프로젝트 설정(Project settings)</b>을 클릭합니다.</div></div>
-      </div>
-      <div class="sub">
-        <div class="n">2</div>
-        <div><div class="t">사용자 및 권한 메뉴</div><div class="b">상단 탭에서 <b>사용자 및 권한(Users and permissions)</b>을 클릭합니다.</div></div>
-      </div>
-      <div class="sub">
-        <div class="n">3</div>
-        <div>
-          <div class="t">구성원 추가</div>
-          <div class="b">"구성원 추가(Add member)" 버튼을 클릭한 뒤, 아래 이메일을 입력합니다.</div>
-          <div class="field">jhsok92120@gmail.com</div>
-        </div>
-      </div>
-      <div class="sub">
-        <div class="n">4</div>
-        <div>
-          <div class="t">역할(권한) 지정</div>
-          <div class="b">역할 선택에서 <b>편집자(Editor)</b>를 선택한 뒤 "구성원 추가"를 클릭하여 완료합니다.</div>
-          <div class="callout tip">💡 소유자(Owner) 권한은 원장님만 유지하시고, 개발자에게는 편집자(Editor) 권한만 부여하시면 됩니다. 이는 계정과 결제 정보의 안전한 관리를 위한 표준 방식입니다.</div>
-        </div>
-      </div>
-    </div>
-
   </div>
-</div>
+</section>
 
-<div class="checklist">
-  <div class="checklist-card">
-    <h2>완료 체크리스트</h2>
-    <p>진행하신 항목을 눌러 표시해 보세요. (화면에서만 표시되며 별도로 저장되지는 않습니다)</p>
+<section class="tab-panel" id="panel-kakao" data-steps="5">
 
-    <div class="citem" data-key="0"><div class="cb"></div><span class="label">Firebase 프로젝트 생성 완료</span></div>
-    <div class="citem" data-key="1"><div class="cb"></div><span class="label">Blaze 요금제로 업그레이드 완료</span></div>
-    <div class="citem" data-key="2"><div class="cb"></div><span class="label">Firestore Database 생성 완료 (asia-northeast3)</span></div>
-    <div class="citem" data-key="3"><div class="cb"></div><span class="label">Storage 생성 완료 (asia-northeast3)</span></div>
-    <div class="citem" data-key="4"><div class="cb"></div><span class="label">jhsok92120@gmail.com 편집자(Editor) 권한 추가 완료</span></div>
+  <section class="hero">
+    <div class="kicker">STEP 3 · 오시는 길 지도</div>
+    <h1>카카오맵 API 설정</h1>
+    <p>홈페이지에 "오시는 길" 지도를 표시하기 위해 필요한 5가지 단계입니다.</p>
+    <div class="meta-row">
+      <div>⏱ 예상 소요시간 <b>약 10분</b></div>
+      <div>📋 총 <b>5단계</b></div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="intro-box blue">
+      2026년 7월 21일부터 절차가 간소화되어 <b>별도 심사 없이</b> 바로 사용 설정을 켜면 이용할 수 있습니다. 원장님 명의의 카카오 계정으로 진행해 주셔야 합니다.
+    </div>
+  </section>
 
-    <div class="progress-note" id="progressNote">0 / 5 완료</div>
+  <div class="layout">
+    <div class="rail" data-rail="kakao">
+      <div class="rail-dot" data-idx="0">1</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="1">2</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="2">3</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="3">4</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="4">5</div>
+    </div>
 
-    <div class="final-tip">💡 모두 완료되셨다면, <b>프로젝트 이름 또는 프로젝트 ID</b>(예: myclinic-a1b2c)를 저에게 전달해 주세요. 이후 작업은 제가 모두 진행하며, 원장님께서 추가로 하실 일은 없습니다.</div>
+    <div class="steps" data-steps-container="kakao">
+
+      <div class="step" id="kk-step-0">
+        <span class="step-eyebrow">STEP 1</span>
+        <h2>Kakao Developers 가입 · 로그인</h2>
+        <div class="step-sub">카카오맵 API를 사용하려면 개발자 사이트 가입이 필요합니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">사이트 접속</div><div class="b">아래 주소로 접속합니다.</div><div class="field">https://developers.kakao.com</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">카카오 계정으로 로그인</div><div class="b">병원용으로 계속 사용하실 카카오 계정으로 로그인(또는 신규 가입)합니다.</div></div></div>
+      </div>
+
+      <div class="step" id="kk-step-1">
+        <span class="step-eyebrow">STEP 2</span>
+        <h2>애플리케이션 생성</h2>
+        <div class="step-sub">카카오맵을 사용할 앱(프로젝트)을 하나 만듭니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">내 애플리케이션 이동</div><div class="b">상단 메뉴에서 "내 애플리케이션"을 클릭합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">애플리케이션 추가</div><div class="b">"애플리케이션 추가하기" 버튼을 클릭하고, 병원 이름으로 앱 이름을 입력합니다.</div></div></div>
+      </div>
+
+      <div class="step" id="kk-step-2">
+        <span class="step-eyebrow">STEP 3</span>
+        <h2>카카오맵 사용 설정</h2>
+        <div class="step-sub">2026년 7월부터 바뀐 절차로, 심사 없이 토글만 켜면 됩니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">제품 설정 이동</div><div class="b">생성한 앱 클릭 → <b>[제품 설정] → [카카오맵]</b>으로 이동합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">사용 설정 켜기</div><div class="b">"사용 설정" 토글을 켭니다.</div><div class="callout tip">💡 개발자 계정에서 처음 활성화한 앱은 무료 쿼터 내에서 바로 사용 가능합니다. 병원마다 별도 카카오 계정을 쓰시는 것을 권장드립니다.</div></div></div>
+      </div>
+
+      <div class="step" id="kk-step-3">
+        <span class="step-eyebrow">STEP 4</span>
+        <h2>JavaScript 키 확인</h2>
+        <div class="step-sub">홈페이지 코드에 넣을 키를 확인하고 저에게 전달해 주시는 단계입니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">앱 키 메뉴 이동</div><div class="b">해당 앱 클릭 → <b>[앱 설정] → [앱 키]</b>로 이동합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">JavaScript 키 복사</div><div class="b">"JavaScript 키" 항목의 복사 버튼을 눌러 저에게 전달해 주세요.</div></div></div>
+      </div>
+
+      <div class="step" id="kk-step-4">
+        <span class="step-eyebrow">STEP 5</span>
+        <h2>플랫폼(도메인) 등록</h2>
+        <div class="step-sub">등록된 도메인에서만 지도가 정상적으로 표시됩니다. 이 단계를 빠뜨리면 지도가 안 뜹니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">플랫폼 메뉴 이동</div><div class="b">해당 앱 클릭 → <b>[앱 설정] → [플랫폼]</b>으로 이동합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">Web 플랫폼 등록</div><div class="b">"Web 플랫폼 등록"을 클릭하고 실제 홈페이지 도메인 주소를 입력합니다. (예: https://myclinic.co.kr)</div><div class="callout warn">⚠️ 도메인 연결(STEP 2)이 먼저 완료되어 있어야 정확한 주소를 입력할 수 있습니다.</div></div></div>
+      </div>
+
+    </div>
   </div>
-</div>
+
+  <div class="checklist">
+    <div class="checklist-card">
+      <h2>완료 체크리스트</h2>
+      <p>진행하신 항목을 눌러 표시해 보세요.</p>
+      <div class="citem" data-key="kk0"><div class="cb"></div><span class="label">Kakao Developers 가입 및 로그인 완료</span></div>
+      <div class="citem" data-key="kk1"><div class="cb"></div><span class="label">애플리케이션 생성 완료</span></div>
+      <div class="citem" data-key="kk2"><div class="cb"></div><span class="label">카카오맵 사용 설정 켜기 완료</span></div>
+      <div class="citem" data-key="kk3"><div class="cb"></div><span class="label">JavaScript 키 확인 및 전달 완료</span></div>
+      <div class="citem" data-key="kk4"><div class="cb"></div><span class="label">Web 플랫폼(도메인) 등록 완료</span></div>
+      <div class="progress-note" data-progress="kakao">0 / 5 완료</div>
+      <div class="final-tip blue">💡 JavaScript 키만 전달해 주시면 지도 삽입 작업은 제가 진행합니다. 플랫폼 등록은 원장님 카카오 계정에서 직접 해주셔야 합니다.</div>
+    </div>
+  </div>
+</section>
 
 <div class="contact">
   <div class="contact-card">
@@ -601,46 +565,71 @@
 </div>
 
 <script>
-  const steps = Array.from(document.querySelectorAll('.step'));
-  const dots = Array.from(document.querySelectorAll('.rail-dot'));
-  const segs = Array.from(document.querySelectorAll('.rail-seg'));
+  const tabBtns = Array.from(document.querySelectorAll('.tab-btn'));
+  const panels = Array.from(document.querySelectorAll('.tab-panel'));
   const mobileLabel = document.getElementById('mobileLabel');
   const mobileFill = document.getElementById('mobileFill');
+  let currentObserver = null;
 
-  function setActive(idx){
-    dots.forEach((d,i)=>{
-      d.classList.remove('active','done');
-      if(i < idx) d.classList.add('done');
-      if(i === idx) d.classList.add('active');
-    });
-    segs.forEach((s,i)=>{
-      s.classList.toggle('filled', i < idx);
-    });
-    mobileLabel.textContent = `STEP ${idx+1} / 5`;
-    mobileFill.style.width = `${((idx+1)/5)*100}%`;
+  function activateTab(tabName){
+    tabBtns.forEach(b=>b.classList.toggle('active', b.dataset.tab === tabName));
+    panels.forEach(p=>p.classList.toggle('active', p.id === 'panel-' + tabName));
+    window.scrollTo({top:0, behavior:'auto'});
+    setupObserverFor(tabName);
   }
 
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        const idx = steps.indexOf(entry.target);
-        setActive(idx);
-      }
-    });
-  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+  tabBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=> activateTab(btn.dataset.tab));
+  });
 
-  steps.forEach(s=>observer.observe(s));
-  setActive(0);
+  function setupObserverFor(tabName){
+    if(currentObserver){ currentObserver.disconnect(); }
+    const container = document.querySelector(`[data-steps-container="${tabName}"]`);
+    const rail = document.querySelector(`[data-rail="${tabName}"]`);
+    if(!container || !rail) return;
+    const steps = Array.from(container.querySelectorAll('.step'));
+    const dots = Array.from(rail.querySelectorAll('.rail-dot'));
+    const segs = Array.from(rail.querySelectorAll('.rail-seg'));
+    const total = steps.length;
+
+    function setActive(idx){
+      dots.forEach((d,i)=>{
+        d.classList.remove('active','done');
+        if(i < idx) d.classList.add('done');
+        if(i === idx) d.classList.add('active');
+      });
+      segs.forEach((s,i)=>{ s.classList.toggle('filled', i < idx); });
+      mobileLabel.textContent = `STEP ${idx+1} / ${total}`;
+      mobileFill.style.width = `${((idx+1)/total)*100}%`;
+    }
+
+    currentObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const idx = steps.indexOf(entry.target);
+          setActive(idx);
+        }
+      });
+    }, { rootMargin: '-35% 0px -50% 0px', threshold: 0 });
+
+    steps.forEach(s=>currentObserver.observe(s));
+    setActive(0);
+  }
 
   document.querySelectorAll('.citem').forEach(item=>{
     item.addEventListener('click', ()=>{
       item.classList.toggle('checked');
       const cb = item.querySelector('.cb');
       cb.textContent = item.classList.contains('checked') ? '✓' : '';
-      const done = document.querySelectorAll('.citem.checked').length;
-      document.getElementById('progressNote').textContent = `${done} / 5 완료`;
+      const card = item.closest('.checklist-card');
+      const total = card.querySelectorAll('.citem').length;
+      const done = card.querySelectorAll('.citem.checked').length;
+      const note = card.querySelector('.progress-note');
+      note.textContent = `${done} / ${total} 완료`;
     });
   });
+
+  setupObserverFor('firebase');
 </script>
 
 </body>
