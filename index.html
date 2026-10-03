@@ -309,7 +309,7 @@
   <div class="track"><div class="fill" id="mobileFill"></div></div>
 </div>
 
-<section class="tab-panel active" id="panel-firebase" data-steps="5">
+<section class="tab-panel active" id="panel-firebase" data-steps="6">
 
   <section class="hero">
     <div class="kicker">프로젝트 준비</div>
@@ -336,6 +336,8 @@
       <div class="rail-dot" data-idx="3">4</div>
       <div class="rail-seg"></div>
       <div class="rail-dot" data-idx="4">5</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="5">6</div>
     </div>
 
     <div class="steps" data-steps-container="firebase">
@@ -455,6 +457,34 @@
         </div>
       </div>
 
+      <div class="step" id="fb-step-5">
+        <span class="step-eyebrow">STEP 6</span>
+        <h2>추가 권한 부여 (공지사항 등 기능 관리용)</h2>
+        <div class="step-sub">편집자(Editor) 권한만으로는 공지사항처럼 자동화 기능(Cloud Functions)이 들어간 부분을 관리할 때 오류가 날 수 있어, 아래 3가지 권한을 추가로 부여해 주셔야 합니다.</div>
+
+        <div class="callout warn">⚠️ 이 3가지 권한은 Firebase 콘솔의 "사용자 및 권한" 화면에서는 추가할 수 없고, <b>Google Cloud 콘솔</b>이라는 별도 화면에서 추가해야 합니다. 아래 순서대로 진행해 주세요.</div>
+
+        <div class="sub">
+          <div class="n">1</div>
+          <div><div class="t">Google Cloud 콘솔 IAM 페이지 접속</div><div class="b">주소창에 아래 주소를 입력하여 접속한 뒤, 현재 사용 중이신 프로젝트가 맞는지 상단에서 확인합니다.</div><div class="field">console.cloud.google.com/iam-admin/iam</div></div>
+        </div>
+        <div class="sub">
+          <div class="n">2</div>
+          <div><div class="t">주 구성원(jhsok92120@gmail.com) 찾기</div><div class="b">목록에서 <b>jhsok92120@gmail.com</b> 계정을 찾아, 오른쪽의 연필(✏️) 모양 "주 구성원 수정" 아이콘을 클릭합니다.</div></div>
+        </div>
+        <div class="sub">
+          <div class="n">3</div>
+          <div>
+            <div class="t">역할 3개 추가</div>
+            <div class="b">"다른 역할 추가(Add another role)"를 3번 클릭하여, 아래 3개 역할을 각각 검색해서 추가합니다.</div>
+            <div class="field">서비스 계정 사용자 (Service Account User)</div>
+            <div class="field">Cloud Run 관리자 (Cloud Run Admin)</div>
+            <div class="field">Cloud Functions 관리자 (Cloud Functions Admin)</div>
+          </div>
+        </div>
+        <div class="sub"><div class="n">4</div><div><div class="t">저장</div><div class="b">하단의 "저장(Save)" 버튼을 클릭하면 반영됩니다. 기존에 가지고 있던 편집자(Editor) 역할은 그대로 유지되며, 이번 3개 역할이 추가로 더해지는 것입니다.</div></div></div>
+      </div>
+
     </div>
   </div>
 
@@ -467,7 +497,8 @@
       <div class="citem" data-key="fb2"><div class="cb"></div><span class="label">Firestore Database 생성 완료 (asia-northeast3)</span></div>
       <div class="citem" data-key="fb3"><div class="cb"></div><span class="label">Storage 생성 완료 (asia-northeast3)</span></div>
       <div class="citem" data-key="fb4"><div class="cb"></div><span class="label">jhsok92120@gmail.com 편집자(Editor) 권한 추가 완료</span></div>
-      <div class="progress-note" data-progress="firebase">0 / 5 완료</div>
+      <div class="citem" data-key="fb5"><div class="cb"></div><span class="label">서비스 계정 사용자 · Cloud Run 관리자 · Cloud Functions 관리자 역할 추가 완료</span></div>
+      <div class="progress-note" data-progress="firebase">0 / 6 완료</div>
       <div class="final-tip">💡 모두 완료되셨다면, <b>프로젝트 이름 또는 프로젝트 ID</b>를 저에게 전달해 주세요. 이후 작업은 제가 모두 진행합니다.</div>
     </div>
   </div>
@@ -1060,6 +1091,36 @@
 </div>
 
 <script>
+  (function(){
+    // 링크에 ?only=firebase 또는 ?only=firebase,domain 같은 파라미터가 있으면
+    // 해당 탭(들)만 남기고 나머지 탭 버튼/내용은 아예 제거합니다.
+    const params = new URLSearchParams(window.location.search);
+    const onlyParam = params.get('only');
+    if(onlyParam){
+      const validKeys = ['firebase','domain','kakao','naver','ga','gsc','nsa'];
+      const keep = onlyParam.split(',').map(s=>s.trim()).filter(k=>validKeys.includes(k));
+      if(keep.length){
+        document.querySelectorAll('.tab-btn').forEach(btn=>{
+          if(!keep.includes(btn.dataset.tab)) btn.remove();
+        });
+        document.querySelectorAll('.tab-panel').forEach(panel=>{
+          const key = panel.id.replace('panel-','');
+          if(!keep.includes(key)) panel.remove();
+        });
+        const firstKey = keep[0];
+        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab === firstKey));
+        document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active', p.id === 'panel-' + firstKey));
+        if(keep.length === 1){
+          // 탭이 하나뿐이면 전환할 필요가 없으니 상단 탭 줄/햄버거 메뉴까지 숨깁니다.
+          const tabsRow = document.getElementById('tabs');
+          if(tabsRow) tabsRow.style.display = 'none';
+          const hamburgerBtnEl = document.getElementById('hamburgerBtn');
+          if(hamburgerBtnEl) hamburgerBtnEl.style.display = 'none';
+        }
+      }
+    }
+  })();
+
   const tabBtns = Array.from(document.querySelectorAll('.tab-btn'));
   const panels = Array.from(document.querySelectorAll('.tab-panel'));
   const mobileLabel = document.getElementById('mobileLabel');
@@ -1144,7 +1205,8 @@
     });
   });
 
-  setupObserverFor('firebase');
+  const initialActivePanel = document.querySelector('.tab-panel.active');
+  setupObserverFor(initialActivePanel ? initialActivePanel.id.replace('panel-','') : 'firebase');
 </script>
 
 </body>
