@@ -72,7 +72,7 @@
     clip-path:polygon(0 0, 100% 0, 100% 55%, 50% 100%, 0 55%);
   }
   .tabs{
-    display:flex; gap:8px; flex-wrap:nowrap;
+    display:flex; gap:6px; flex-wrap:nowrap;
     width:100%;
     overflow-x:auto; scrollbar-width:thin; scrollbar-color:rgba(255,255,255,0.3) transparent;
     -ms-overflow-style:none;
@@ -82,19 +82,19 @@
   .tabs::-webkit-scrollbar{ height:5px; }
   .tabs::-webkit-scrollbar-thumb{ background:rgba(255,255,255,0.28); border-radius:4px; }
   .tab-btn{
-    display:flex; align-items:center; gap:8px;
+    display:flex; align-items:center; gap:6px;
     border:1.5px solid rgba(255,255,255,0.28);
     background:rgba(255,255,255,0.06);
     color:rgba(255,255,255,0.8);
     font-family:inherit;
-    font-size:14px; font-weight:700;
-    padding:9px 14px; border-radius:22px;
+    font-size:13px; font-weight:700;
+    padding:8px 11px; border-radius:20px;
     cursor:pointer; transition:all .2s ease;
     white-space:nowrap; flex-shrink:0;
   }
   .tab-btn .num{
-    width:18px;height:18px; border-radius:50%;
-    background:rgba(255,255,255,0.22); color:#fff; font-size:12.5px;
+    width:17px;height:17px; border-radius:50%;
+    background:rgba(255,255,255,0.22); color:#fff; font-size:11.5px;
     display:flex;align-items:center;justify-content:center; flex-shrink:0;
   }
   .tab-btn:hover{border-color:#fff; color:#fff;}
@@ -284,6 +284,7 @@
   <button class="tab-btn drawer-item" data-tab="ga"><span class="num">5</span>구글 애널리틱스</button>
   <button class="tab-btn drawer-item" data-tab="gsc"><span class="num">6</span>구글 서치콘솔</button>
   <button class="tab-btn drawer-item" data-tab="nsa"><span class="num">7</span>네이버 서치어드바이저</button>
+  <button class="tab-btn drawer-item" data-tab="nal"><span class="num">8</span>네이버 애널리틱스</button>
 </nav>
 
 <div class="topbar">
@@ -300,6 +301,7 @@
       <button class="tab-btn" data-tab="ga"><span class="num">5</span>구글 애널리틱스</button>
       <button class="tab-btn" data-tab="gsc"><span class="num">6</span>구글 서치콘솔</button>
       <button class="tab-btn" data-tab="nsa"><span class="num">7</span>네이버 서치어드바이저</button>
+      <button class="tab-btn" data-tab="nal"><span class="num">8</span>네이버 애널리틱스</button>
     </div>
   </div>
 </div>
@@ -479,7 +481,7 @@
             <div class="b">"다른 역할 추가(Add another role)"를 3번 클릭하여, 아래 3개 역할을 각각 검색해서 추가합니다.</div>
             <div class="field">서비스 계정 사용자 (Service Account User)</div>
             <div class="field">Cloud Run 관리자 (Cloud Run Admin)</div>
-            <div class="field">Cloud Functions 관리자 (Cloud Functions Admin)</div>
+            <div class="field">Cloud 함수 관리자 (Cloud Functions Admin)</div>
           </div>
         </div>
         <div class="sub"><div class="n">4</div><div><div class="t">저장</div><div class="b">하단의 "저장(Save)" 버튼을 클릭하면 반영됩니다. 기존에 가지고 있던 편집자(Editor) 역할은 그대로 유지되며, 이번 3개 역할이 추가로 더해지는 것입니다.</div></div></div>
@@ -497,7 +499,7 @@
       <div class="citem" data-key="fb2"><div class="cb"></div><span class="label">Firestore Database 생성 완료 (asia-northeast3)</span></div>
       <div class="citem" data-key="fb3"><div class="cb"></div><span class="label">Storage 생성 완료 (asia-northeast3)</span></div>
       <div class="citem" data-key="fb4"><div class="cb"></div><span class="label">jhsok92120@gmail.com 편집자(Editor) 권한 추가 완료</span></div>
-      <div class="citem" data-key="fb5"><div class="cb"></div><span class="label">서비스 계정 사용자 · Cloud Run 관리자 · Cloud Functions 관리자 역할 추가 완료</span></div>
+      <div class="citem" data-key="fb5"><div class="cb"></div><span class="label">서비스 계정 사용자 · Cloud Run 관리자 · Cloud 함수 관리자 역할 추가 완료</span></div>
       <div class="progress-note" data-progress="firebase">0 / 6 완료</div>
       <div class="final-tip">💡 모두 완료되셨다면, <b>프로젝트 이름 또는 프로젝트 ID</b>를 저에게 전달해 주세요. 이후 작업은 제가 모두 진행합니다.</div>
     </div>
@@ -1080,6 +1082,102 @@
   </div>
 </section>
 
+<section class="tab-panel" id="panel-nal" data-steps="5">
+
+  <section class="hero">
+    <div class="kicker">광고 효과 분석 (네이버)</div>
+    <h1>네이버 프리미엄 로그 분석 설정</h1>
+    <p>네이버 검색광고를 운영 중이시거나 예정이시라면, 광고 효과(전환)를 분석할 수 있게 연결하는 5가지 단계입니다.</p>
+    <div class="meta-row">
+      <div>⏱ 예상 소요시간 <b>약 15분 + 검수 대기 최대 7영업일</b></div>
+      <div>📋 총 <b>5단계</b></div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="intro-box">
+      네이버 검색광고를 통해 들어온 방문자가 예약·문의까지 실제로 이어졌는지 확인해주는, 네이버의 광고 효과 분석 도구예요.<br>네이버 검색광고비를 집행 중이시거나 집행 예정이시라면, 광고가 실제로 효과가 있는지 확인할 때 필요합니다.
+    </div>
+    <div class="intro-box">
+      이 설정은 <b>네이버 검색광고를 운영하시는 경우에만</b> 필요합니다. 아직 네이버 광고를 하지 않으신다면 이 탭은 지금 진행하지 않으셔도 됩니다. 신청부터 완료까지 최대 7영업일 정도 걸리니, 광고를 시작하시기 전에 미리 신청해 두시는 걸 추천드립니다.
+    </div>
+  </section>
+
+  <div class="layout">
+    <div class="rail" data-rail="nal">
+      <div class="rail-dot" data-idx="0">1</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="1">2</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="2">3</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="3">4</div>
+      <div class="rail-seg"></div>
+      <div class="rail-dot" data-idx="4">5</div>
+    </div>
+
+    <div class="steps" data-steps-container="nal">
+
+      <div class="step" id="nal-step-0">
+        <span class="step-eyebrow">STEP 1</span>
+        <h2>네이버 검색광고 가입 및 비즈채널 등록</h2>
+        <div class="step-sub">프리미엄 로그 분석은 네이버 검색광고 계정이 있어야 신청할 수 있는 단계입니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">네이버 검색광고 가입</div><div class="b">사업자 등록번호로 아래 주소에서 가입합니다. (이미 운영 중이시면 생략)</div><div class="field">https://searchad.naver.com</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">비즈채널 등록</div><div class="b">광고주 센터 상단 <b>도구 → 비즈채널 관리</b>에서 홈페이지 채널을 등록합니다. 네이버 심사를 거치며 보통 1~2 영업일 걸립니다.</div></div></div>
+      </div>
+
+      <div class="step" id="nal-step-1">
+        <span class="step-eyebrow">STEP 2</span>
+        <h2>프리미엄 로그 분석 신청</h2>
+        <div class="step-sub">비즈채널 심사가 끝난 뒤 진행하는 단계입니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">프리미엄 로그 분석 메뉴 이동</div><div class="b">검색광고 관리자 페이지 상단의 <b>도구 → 프리미엄 로그 분석</b>을 클릭합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">신규 신청</div><div class="b">"신규 신청" 버튼을 클릭하고, 설치유형은 <b>직접 설치</b>를 선택한 뒤 담당자 이메일을 입력하고 제출합니다.</div></div></div>
+      </div>
+
+      <div class="step" id="nal-step-2">
+        <span class="step-eyebrow">STEP 3</span>
+        <h2>검수 대기 및 인증키 확인</h2>
+        <div class="step-sub">네이버가 신청 내용을 검토하는 단계입니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">접수 확인 메일 수신</div><div class="b">신청 직후 입력하신 이메일로 접수 확인 메일이 도착합니다.</div>
+          <div class="callout warn">⚠️ 검수에는 보통 1~3영업일, 최대 7영업일까지 걸릴 수 있습니다.</div></div></div>
+        <div class="sub">
+          <div class="n">2</div>
+          <div><div class="t">인증키(분석스크립트) 확인 및 전달</div><div class="b">검수가 끝나면 도착하는 설치 안내 메일에서 "분석스크립트 확인" 버튼을 클릭하면 <b>네이버 공통 인증키</b>가 표시됩니다. 이 코드를 복사해서 저에게 전달해 주세요.</div></div>
+        </div>
+      </div>
+
+      <div class="step" id="nal-step-3">
+        <span class="step-eyebrow">STEP 4</span>
+        <h2>로그분석 스크립트 설치</h2>
+        <div class="step-sub">전달해 주신 인증키를 홈페이지에 삽입하는 단계입니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">스크립트 삽입</div><div class="b">전달받은 인증키 스크립트를 홈페이지 전체 페이지의 <code>&lt;head&gt;</code> 영역에 삽입합니다.</div>
+          <div class="callout tip">💡 이 단계는 제가 대신 진행합니다. 인증키만 전달해 주시면 됩니다.</div></div></div>
+      </div>
+
+      <div class="step" id="nal-step-4">
+        <span class="step-eyebrow">STEP 5</span>
+        <h2>전환 검수 신청 및 완료 확인</h2>
+        <div class="step-sub">스크립트가 정상적으로 설치됐는지 네이버가 최종 확인하는 단계입니다.</div>
+        <div class="sub"><div class="n">1</div><div><div class="t">전환 검수 신청</div><div class="b">스크립트 설치가 끝나면, 네이버 설치 안내 메일에서 "전환 검수"를 신청합니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">리포트 확인</div><div class="b">검수가 통과되면 다음 날부터 네이버 검색광고 관리자 페이지에서 방문자·전환 리포트를 확인하실 수 있습니다.</div></div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-card">
+      <h2>완료 체크리스트</h2>
+      <p>진행하신 항목을 눌러 표시해 보세요.</p>
+      <div class="citem" data-key="nal0"><div class="cb"></div><span class="label">네이버 검색광고 가입 및 비즈채널 등록 완료</span></div>
+      <div class="citem" data-key="nal1"><div class="cb"></div><span class="label">프리미엄 로그 분석 신규 신청 완료</span></div>
+      <div class="citem" data-key="nal2"><div class="cb"></div><span class="label">인증키(분석스크립트) 확인 및 전달 완료</span></div>
+      <div class="citem" data-key="nal3"><div class="cb"></div><span class="label">로그분석 스크립트 설치 완료</span></div>
+      <div class="citem" data-key="nal4"><div class="cb"></div><span class="label">전환 검수 신청 및 리포트 확인 완료</span></div>
+      <div class="progress-note" data-progress="nal">0 / 5 완료</div>
+      <div class="final-tip">💡 인증키만 전달해 주시면 설치는 제가 진행합니다. 네이버 광고를 운영하지 않으신다면 이 탭은 건너뛰셔도 됩니다.</div>
+    </div>
+  </div>
+</section>
+
 <div class="contact">
   <div class="contact-card">
     <div>
@@ -1097,7 +1195,7 @@
     const params = new URLSearchParams(window.location.search);
     const onlyParam = params.get('only');
     if(onlyParam){
-      const validKeys = ['firebase','domain','kakao','naver','ga','gsc','nsa'];
+      const validKeys = ['firebase','domain','kakao','naver','ga','gsc','nsa','nal'];
       const keep = onlyParam.split(',').map(s=>s.trim()).filter(k=>validKeys.includes(k));
       if(keep.length){
         document.querySelectorAll('.tab-btn').forEach(btn=>{
