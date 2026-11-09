@@ -1073,9 +1073,10 @@
         <h2>사이트맵 제출</h2>
         <div class="step-sub">구글과 마찬가지로, 네이버 검색 로봇에게 사이트 구조를 알려주는 단계입니다.</div>
         <div class="sub"><div class="n">1</div><div><div class="t">사이트맵 제출 메뉴 이동</div><div class="b">등록된 사이트를 클릭해 관리 페이지로 들어간 뒤, 왼쪽 메뉴 <b>요청 → 사이트맵 제출</b>을 클릭합니다.</div></div></div>
-        <div class="sub"><div class="n">2</div><div><div class="t">사이트맵 주소 입력</div><div class="b">입력란 <b>앞부분에 등록한 홈페이지 주소(https://…/)가 회색으로 이미 채워져</b> 있습니다. 그 뒤에 <code>sitemap.xml</code> <b>딱 이것만</b> 입력하고 "확인"을 클릭합니다. (사이트맵 파일은 제가 미리 만들어 드립니다)</div>
-          <div class="callout warn">⚠️ 구글과 똑같은 방식입니다. 전체 주소를 다시 넣으면 주소가 겹쳐서 실패합니다. 혹시 입력란에 앞부분이 비어 있는 화면이라면 그때는 <code>https://우리홈페이지주소/sitemap.xml</code> 전체를 넣으시면 됩니다.</div>
-          <div class="callout tip">💡 제출 후 아래 목록에 사이트맵 주소가 표시되면 접수된 것입니다.</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">사이트맵 주소 입력</div><div class="b">"사이트맵 URL 입력" 칸은 <b>비어 있는 칸</b>입니다. 구글과 달리 여기에는 <b>전체 주소</b>를 넣어야 합니다. 화면 맨 위에 표시된 등록 사이트 주소 뒤에 <code>/sitemap.xml</code>을 붙여 입력하고 "확인"을 클릭합니다. (사이트맵 파일은 제가 미리 만들어 드립니다)</div>
+          <div class="field">https://myclinic.co.kr/sitemap.xml</div>
+          <div class="callout warn">⚠️ 앞부분은 화면 맨 위에 적힌 <b>등록 사이트 주소와 글자 하나 다르지 않게</b> 입력해야 합니다. <code>sitemap.xml</code>만 넣거나, https/http·www가 다르면 접수되지 않습니다.</div>
+          <div class="callout tip">💡 제출되면 아래 "제출된 사이트맵" 목록에 <b>sitemap.xml</b>과 등록일이 표시됩니다. 이게 보이면 끝입니다.</div></div></div>
       </div>
 
       <div class="step" id="nsa-step-5">
@@ -1083,7 +1084,7 @@
         <h2>수집·색인 되고 있는지 확인</h2>
         <div class="step-sub">등록 후 1~2주쯤 지나서, 네이버가 실제로 우리 홈페이지를 읽어가고 있는지 확인하는 방법입니다.</div>
         <div class="sub"><div class="n">1</div><div><div class="t">가장 쉬운 방법: 네이버에서 직접 검색</div><div class="b">네이버 검색창에 <code>site:우리홈페이지주소</code>(예: <code>site:myclinic.co.kr</code>)를 입력합니다. 우리 홈페이지 페이지들이 나오면 색인이 된 것입니다.</div></div></div>
-        <div class="sub"><div class="n">2</div><div><div class="t">수집 요청 (처음 한 번)</div><div class="b">왼쪽 메뉴 <b>요청 → 웹 페이지 수집</b>에서 홈페이지 메인 주소를 입력하고 "확인"을 누르면 네이버 로봇이 우선 방문합니다. 색인을 앞당기는 데 도움이 됩니다. (하루 요청 횟수 제한이 있으니 메인 주소 한 번이면 충분합니다)</div></div></div>
+        <div class="sub"><div class="n">2</div><div><div class="t">수집 요청 (처음 한 번)</div><div class="b">왼쪽 메뉴 <b>요청 → 웹 페이지 수집</b>으로 들어가면 "수집 요청 URL 입력" 칸이 비어 있습니다. 여기에도 홈페이지 <b>전체 주소</b>를 입력하고 "확인"을 누릅니다. 아래 "수집 요청 내역"에 주소와 등록일이 표시되면 접수된 것이고, 네이버 로봇이 우선 방문해 색인을 앞당겨 줍니다.</div><div class="field">https://myclinic.co.kr</div><div class="callout tip">💡 요청 횟수가 사이트별로 제한되니 메인 주소 한 번이면 충분합니다. 수집·색인까지 걸리는 시간은 네이버가 사이트를 어떻게 평가하느냐에 따라 달라집니다.</div></div></div>
         <div class="sub"><div class="n">3</div><div><div class="t">리포트 확인</div><div class="b">왼쪽 메뉴 <b>리포트 → 사이트 진단</b>에서 수집·색인 현황과 오류 여부를, <b>리포트 → 콘텐츠 노출/클릭</b>에서 네이버 검색에 실제로 노출된 횟수를 볼 수 있습니다. 숫자가 0에서 늘어나기 시작하면 정상입니다.</div><div class="callout tip">💡 네이버는 구글보다 색인이 느린 편이라 2~4주까지 걸리기도 합니다. 4주가 지나도 site: 검색에 아무것도 안 나오면 저에게 알려 주세요.</div></div></div>
       </div>
 
