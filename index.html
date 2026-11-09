@@ -311,19 +311,19 @@
   <div class="track"><div class="fill" id="mobileFill"></div></div>
 </div>
 
-<section class="tab-panel active" id="panel-firebase" data-steps="6">
+<section class="tab-panel active" id="panel-firebase" data-steps="4">
 
   <section class="hero">
     <div class="kicker">프로젝트 준비</div>
     <h1>Firebase 프로젝트 설정</h1>
-    <p>홈페이지가 올라갈 원장님 전용 프로젝트(계정 공간)를 만들고 개발자에게 작업 권한을 주는 6가지 단계입니다.</p>
+    <p>홈페이지가 올라갈 원장님 전용 프로젝트(계정 공간)를 만들고 개발자에게 작업 권한을 주는 4가지 단계입니다.</p>
     <div class="meta-row">
-      <div>⏱ 예상 소요시간 <b>약 20분</b></div>
-      <div>📋 총 <b>6단계</b></div>
+      <div>⏱ 예상 소요시간 <b>약 15분</b></div>
+      <div>📋 총 <b>4단계</b></div>
     </div>
     <div class="hero-divider"></div>
     <div class="intro-box">
-      귀 병원 홈페이지는 <b>원장님 명의의 Firebase 프로젝트</b> 위에서 제작됩니다. 이렇게 하면 홈페이지 데이터와 계정 소유권이 온전히 원장님께 있으며, 저(개발자)는 편집 권한만 받아 제작·관리를 도와드리는 구조입니다.
+      귀 병원 홈페이지는 <b>원장님 명의의 Firebase 프로젝트</b> 위에서 제작됩니다. 이렇게 하면 홈페이지 데이터와 계정 소유권이 온전히 원장님께 있으며, 저(개발자)는 편집 권한만 받아 제작·관리를 도와드리는 구조입니다. 데이터베이스·사진 저장소 생성 같은 기술 작업은 권한을 받은 뒤 제가 진행하므로, 원장님은 <b>아래 4단계만</b> 해주시면 됩니다.
     </div>
   </section>
 
@@ -336,10 +336,6 @@
       <div class="rail-dot" data-idx="2">3</div>
       <div class="rail-seg"></div>
       <div class="rail-dot" data-idx="3">4</div>
-      <div class="rail-seg"></div>
-      <div class="rail-dot" data-idx="4">5</div>
-      <div class="rail-seg"></div>
-      <div class="rail-dot" data-idx="5">6</div>
     </div>
 
     <div class="steps" data-steps-container="firebase">
@@ -386,7 +382,7 @@
       <div class="step" id="fb-step-1">
         <span class="step-eyebrow">STEP 2</span>
         <h2>요금제를 Blaze로 업그레이드</h2>
-        <div class="step-sub">이미지 저장, 실시간 데이터베이스 등 정상 작동을 위해 필요한 단계입니다.</div>
+        <div class="step-sub">사진 저장소(Storage) 등 홈페이지에 필요한 기능은 Blaze 요금제에서만 만들 수 있어, 제가 작업을 시작하기 전에 꼭 필요한 단계입니다.</div>
 
         <div class="callout warn" style="margin-bottom:22px;">⚠️ "Blaze"는 사용량 기반 종량제 요금제입니다. 병원 홈페이지 수준의 트래픽에서는 대부분 월 0원 ~ 소액 수준이며, 무료 사용량 한도 내에서는 과금되지 않습니다.</div>
         <div class="callout warn" style="margin-bottom:22px;">⚠️ 요금제 변경은 <b>프로젝트 소유자(Owner)만</b> 할 수 있습니다. 제가 편집자(Editor) 권한으로 대신 해드릴 수 없는 단계이니, 이 STEP은 꼭 원장님이 직접 진행해 주세요.</div>
@@ -411,84 +407,49 @@
 
       <div class="step" id="fb-step-2">
         <span class="step-eyebrow">STEP 3</span>
-        <h2>Firestore Database 설정</h2>
-        <div class="step-sub">예약 문의, 공지사항 등 데이터를 저장하는 공간을 만드는 단계입니다.</div>
-
-        <div class="sub"><div class="n">1</div><div><div class="t">Firestore 메뉴 이동</div><div class="b">왼쪽 메뉴에서 <b>데이터베이스 및 스토리지</b>를 클릭해 펼친 뒤, "NoSQL" 항목 중 <b>Firestore</b>를 선택합니다.</div><div class="callout tip">💡 같은 목록에 "Realtime Database"도 보이는데, 이건 다른 상품이니 헷갈리지 말고 꼭 Firestore를 선택해 주세요.</div></div></div>
-        <div class="sub"><div class="n">2</div><div><div class="t">데이터베이스 만들기</div><div class="b">"데이터베이스 만들기(Create database)" 버튼을 클릭합니다. "에디션"을 고르는 항목이 보이면 <b>Standard</b>를 선택하고, "데이터베이스 ID"는 기본값 <code>(default)</code> 그대로 둡니다.</div></div></div>
-        <div class="sub">
-          <div class="n">3</div>
-          <div>
-            <div class="t">위치(리전) 선택</div>
-            <div class="b">반드시 아래 리전으로 선택해 주세요.</div>
-            <div class="field">위치: asia-northeast3 (Seoul)</div>
-            <div class="callout tip">💡 서울 리전을 선택해야 국내 접속 속도가 가장 빠릅니다. 한 번 선택하면 이후 변경이 불가능합니다.</div>
-          </div>
-        </div>
-        <div class="sub"><div class="n">4</div><div><div class="t">보안 규칙 모드 선택</div><div class="b">"프로덕션 모드에서 시작(Start in production mode)"을 선택하고 "만들기"를 클릭합니다. 처음부터 외부 접근이 차단된 상태로 시작되며, 이후 제가 필요한 접근 규칙만 안전하게 설정해 드립니다.</div></div></div>
-      </div>
-
-      <div class="step" id="fb-step-3">
-        <span class="step-eyebrow">STEP 4</span>
-        <h2>Storage 설정</h2>
-        <div class="step-sub">홈페이지에 들어갈 사진, 이미지 파일을 저장하는 공간을 만드는 단계입니다.</div>
-
-        <div class="sub"><div class="n">1</div><div><div class="t">Storage 메뉴 이동</div><div class="b">왼쪽 메뉴에서 <b>데이터베이스 및 스토리지</b>를 클릭해 펼친 뒤, "객체 스토리지" 항목의 <b>Storage</b>를 선택합니다.</div></div></div>
-        <div class="sub"><div class="n">2</div><div><div class="t">시작하기</div><div class="b">"시작하기(Get started)" 버튼을 클릭합니다.</div></div></div>
-        <div class="sub">
-          <div class="n">3</div>
-          <div><div class="t">위치(리전) 선택</div><div class="b">Firestore와 동일하게 아래 리전을 선택하고 "다음"을 클릭합니다.</div><div class="field">위치: asia-northeast3 (Seoul)</div></div>
-        </div>
-        <div class="sub"><div class="n">4</div><div><div class="t">보안 규칙 선택</div><div class="b">"프로덕션 모드에서 시작"을 선택하고 "다음"을 클릭합니다.</div></div></div>
-        <div class="sub"><div class="n">5</div><div><div class="t">완료</div><div class="b">"완료(Done)"를 클릭하면 Storage 설정이 끝납니다.</div></div></div>
-      </div>
-
-      <div class="step" id="fb-step-4">
-        <span class="step-eyebrow">STEP 5</span>
         <h2>개발자를 편집자(Editor)로 추가</h2>
-        <div class="step-sub">제가 홈페이지 제작·관리 작업을 할 수 있도록 프로젝트에 초대해 주시는 마지막 단계입니다.</div>
+        <div class="step-sub">제가 홈페이지 제작·관리 작업을 할 수 있도록 프로젝트에 초대해 주시는 단계입니다.</div>
 
-        <div class="sub"><div class="n">1</div><div><div class="t">사용자 및 권한 메뉴 이동</div><div class="b">왼쪽 메뉴 <b>⚙️ 설정 → 사용자 및 권한(Users and permissions)</b>을 클릭합니다.</div></div></div>
+        <div class="sub"><div class="n">1</div><div><div class="t">사용자 및 권한 메뉴 이동</div><div class="b">왼쪽 메뉴 <b>⚙️ 설정 → 사용자 및 권한</b>을 클릭합니다. "프로젝트 설정" 화면의 "사용자 및 권한" 탭이 열리고, 지금은 원장님 계정만 "소유자"로 표시되어 있습니다.</div></div></div>
         <div class="sub">
           <div class="n">2</div>
-          <div><div class="t">구성원 추가</div><div class="b">"구성원 추가(Add member)" 버튼을 클릭한 뒤, 아래 이메일을 입력합니다.</div><div class="field">jhsok92120@gmail.com</div></div>
+          <div><div class="t">구성원 추가</div><div class="b">오른쪽 위 파란색 <b>"구성원 추가"</b> 버튼을 클릭하면 "이메일 주소"와 "역할" 입력창이 나타납니다. "이메일 주소" 칸에 아래 주소를 입력합니다.</div><div class="field">jhsok92120@gmail.com</div><div class="callout warn">⚠️ 주소를 한 글자라도 틀리면 초대가 다른 사람에게 가거나 전달되지 않습니다. 위 주소를 복사해서 붙여넣고, 끝이 <code>gmail.com</code>으로 정확한지 확인해 주세요.</div></div>
         </div>
         <div class="sub">
           <div class="n">3</div>
           <div>
             <div class="t">역할(권한) 지정</div>
-            <div class="b">역할 선택에서 <b>편집자(Editor)</b>를 선택한 뒤 "구성원 추가"를 클릭하여 완료합니다.</div>
-            <div class="callout tip">💡 소유자(Owner) 권한은 원장님만 유지하시고, 개발자에게는 편집자(Editor) 권한만 부여하시면 됩니다.</div>
+            <div class="b">"역할 선택" 드롭다운을 클릭하면 소유자 · 편집자 · 뷰어 · Firebase 역할 할당 네 가지가 나옵니다. <b>"편집자"</b>를 선택하고 아래 <b>"완료"</b>를 누른 뒤, 입력창 오른쪽 아래의 <b>"구성원 추가"</b> 버튼을 클릭합니다.</div>
+            <div class="callout tip">💡 "Firebase 역할 할당"을 고르면 체크박스 표가 펼쳐지는데, 이건 쓰지 않습니다. 소유자(Owner) 권한은 원장님만 유지하시고, 개발자에게는 편집자 권한만 주시면 됩니다.</div>
           </div>
         </div>
+        <div class="sub"><div class="n">4</div><div><div class="t">완료 확인</div><div class="b">목록에 <b>jhsok92120@gmail.com</b> 행이 생기고 "초대 전송: 날짜", 역할 칸에 <b>"초대받은 역할: 편집자"</b>라고 표시되면 끝입니다. 제 이메일로 초대가 전송되며, 제가 수락하면 정식 편집자로 바뀝니다.</div></div></div>
       </div>
 
-      <div class="step" id="fb-step-5">
-        <span class="step-eyebrow">STEP 6</span>
+      <div class="step" id="fb-step-3">
+        <span class="step-eyebrow">STEP 4</span>
         <h2>추가 권한 부여 (공지사항 등 기능 관리용)</h2>
-        <div class="step-sub">편집자(Editor) 권한만으로는 공지사항처럼 자동화 기능(Cloud Functions)이 들어간 부분을 관리할 때 오류가 날 수 있어, 아래 3가지 권한을 추가로 부여해 주셔야 합니다.</div>
-
-        <div class="callout warn">⚠️ 이 3가지 권한은 Firebase 콘솔의 "사용자 및 권한" 화면에서는 추가할 수 없고, <b>Google Cloud 콘솔</b>이라는 별도 화면에서 추가해야 합니다. 아래 순서대로 진행해 주세요.</div>
+        <div class="step-sub">편집자 권한만으로는 공지사항 등 일부 기능 관리에 오류가 나서, 역할 3개를 더 주셔야 합니다.</div>
 
         <div class="sub">
           <div class="n">1</div>
-          <div><div class="t">Google Cloud 콘솔 IAM 페이지 접속</div><div class="b">주소창에 아래 주소를 입력하여 접속한 뒤, 현재 사용 중이신 프로젝트가 맞는지 상단에서 확인합니다.</div><div class="field">console.cloud.google.com/iam-admin/iam</div></div>
+          <div><div class="t">"고급 권한 설정" 클릭</div><div class="b">STEP 3의 "사용자 및 권한" 화면에서 구성원 목록 <b>오른쪽 아래의 "고급 권한 설정 ↗"</b>을 클릭합니다. 새 탭으로 Google Cloud 콘솔의 "IAM" 화면이 열립니다.</div></div>
         </div>
         <div class="sub">
           <div class="n">2</div>
-          <div><div class="t">주 구성원(jhsok92120@gmail.com) 찾기</div><div class="b">목록에서 <b>jhsok92120@gmail.com</b> 계정을 찾아, 오른쪽의 연필(✏️) 모양 "주 구성원 수정" 아이콘을 클릭합니다.</div></div>
+          <div><div class="t">연필(✏️) 클릭</div><div class="b">표에서 <b>jhsok92120@gmail.com</b> 행의 맨 오른쪽 연필(✏️)을 클릭합니다. 오른쪽에 수정 패널이 열립니다.</div><div class="callout tip">💡 행이 없으면 제가 아직 초대를 수락하기 전입니다. 표 위의 <b>"+ 액세스 권한 부여"</b>를 클릭하고 "새 주 구성원" 칸에 <code>jhsok92120@gmail.com</code>을 입력한 뒤 ③·④를 똑같이 진행하시면 됩니다.</div></div>
         </div>
         <div class="sub">
           <div class="n">3</div>
           <div>
             <div class="t">역할 3개 추가</div>
-            <div class="b">"다른 역할 추가(Add another role)"를 3번 클릭하여, 아래 3개 역할을 각각 검색해서 추가합니다.</div>
-            <div class="field">서비스 계정 사용자 (Service Account User)</div>
-            <div class="field">Cloud Run 관리자 (Cloud Run Admin)</div>
-            <div class="field">Cloud 함수 관리자 (Cloud Functions Admin)</div>
+            <div class="b"><b>"+ 다른 역할 추가"</b> 클릭 → 새로 생긴 "역할 선택" 칸 클릭 → 검색창에 아래 이름 입력 → 검색결과 클릭. 같은 방법으로 3개를 모두 추가합니다.</div>
+            <div class="field">서비스 계정 사용자</div>
+            <div class="field">Cloud Run 관리자</div>
+            <div class="field">Cloud 함수 관리자</div>
           </div>
         </div>
-        <div class="sub"><div class="n">4</div><div><div class="t">저장</div><div class="b">하단의 "저장(Save)" 버튼을 클릭하면 반영됩니다. 기존에 가지고 있던 편집자(Editor) 역할은 그대로 유지되며, 이번 3개 역할이 추가로 더해지는 것입니다.</div></div></div>
+        <div class="sub"><div class="n">4</div><div><div class="t">저장</div><div class="b">패널 아래의 파란색 <b>"저장"</b>을 클릭하면 끝입니다. 표의 "역할" 칸에 편집자와 3개 역할이 함께 표시됩니다.</div></div></div>
       </div>
 
     </div>
@@ -500,12 +461,10 @@
       <p>진행하신 항목을 눌러 표시해 보세요. (화면에서만 표시되며 저장되지는 않습니다)</p>
       <div class="citem" data-key="fb0"><div class="cb"></div><span class="label">Firebase 프로젝트 생성 완료</span></div>
       <div class="citem" data-key="fb1"><div class="cb"></div><span class="label">Blaze 요금제로 업그레이드 완료</span></div>
-      <div class="citem" data-key="fb2"><div class="cb"></div><span class="label">Firestore Database 생성 완료 (asia-northeast3)</span></div>
-      <div class="citem" data-key="fb3"><div class="cb"></div><span class="label">Storage 생성 완료 (asia-northeast3)</span></div>
-      <div class="citem" data-key="fb4"><div class="cb"></div><span class="label">jhsok92120@gmail.com 편집자(Editor) 권한 추가 완료</span></div>
-      <div class="citem" data-key="fb5"><div class="cb"></div><span class="label">서비스 계정 사용자 · Cloud Run 관리자 · Cloud 함수 관리자 역할 추가 완료</span></div>
-      <div class="progress-note" data-progress="firebase">0 / 6 완료</div>
-      <div class="final-tip">💡 모두 완료되셨다면, <b>프로젝트 이름 또는 프로젝트 ID</b>를 저에게 전달해 주세요. 이후 작업은 제가 모두 진행합니다.</div>
+      <div class="citem" data-key="fb2"><div class="cb"></div><span class="label">jhsok92120@gmail.com 편집자(Editor) 권한 추가 완료</span></div>
+      <div class="citem" data-key="fb3"><div class="cb"></div><span class="label">서비스 계정 사용자 · Cloud Run 관리자 · Cloud 함수 관리자 역할 추가 완료</span></div>
+      <div class="progress-note" data-progress="firebase">0 / 4 완료</div>
+      <div class="final-tip">💡 모두 완료되셨다면, <b>프로젝트 이름 또는 프로젝트 ID</b>를 저에게 전달해 주세요. 데이터베이스(Firestore)·사진 저장소(Storage) 생성을 포함한 이후 작업은 제가 모두 진행합니다.</div>
     </div>
   </div>
 </section>
